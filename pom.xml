@@ -17,7 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	</parent>
 	<groupId>io.github.shymega.repaircafe</groupId>
 	<artifactId>repair-cafe-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>Backend API for Repair Cafes.</name>
 	<description>This is an Spring Boot application for Repair Cafes.</description>
 	<properties>
