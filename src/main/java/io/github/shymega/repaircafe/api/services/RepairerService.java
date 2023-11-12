@@ -27,6 +27,8 @@ public class RepairerService {
     }
 
     private void modifyActive(Long id, boolean state) {
+        if (id == null) throw new IllegalArgumentException("No ID provided.");
+
         Repairer repairer = repository.findById(id)
             .orElseThrow();
         repairer.setActive(state);
