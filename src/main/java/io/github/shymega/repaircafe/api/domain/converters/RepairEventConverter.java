@@ -2,7 +2,6 @@ package io.github.shymega.repaircafe.api.domain.converters;
 
 import io.github.shymega.repaircafe.api.domain.enums.RepairEvent;
 import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Converter;
 
 @Converter

@@ -14,7 +14,9 @@ public class RepairerService {
         return repository.saveAndFlush(o);
     }
 
-    public void delete(Long id) { disable(id); }
+    public void delete(Long id) {
+        disable(id);
+    }
 
     public void disable(Long id) {
         modifyActive(id, false);
@@ -26,7 +28,7 @@ public class RepairerService {
 
     private void modifyActive(Long id, boolean state) {
         Repairer repairer = repository.findById(id)
-                .orElseThrow();
+            .orElseThrow();
         repairer.setActive(state);
         repository.save(repairer);
     }

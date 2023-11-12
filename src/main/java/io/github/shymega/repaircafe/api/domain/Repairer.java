@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
-import java.util.UUID;
-
 @Entity(name = "repairers")
 @ToString
 @Builder
