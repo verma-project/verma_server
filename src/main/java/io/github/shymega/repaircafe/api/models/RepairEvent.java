@@ -1,25 +1,31 @@
-package io.github.shymega.repaircafe.api.domain;
+package io.github.shymega.repaircafe.api.models;
 
-import io.github.shymega.repaircafe.api.domain.converters.RepairEventConverter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.shymega.repaircafe.api.enums.RepairEventEnum;
+import io.github.shymega.repaircafe.api.utils.converters.RepairEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
+@Table(name = "repair_events")
 @Entity
-@Table(name = "events")
 @ToString
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RepairEvent {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class RepairEvent implements Serializable {
     @Id
     @Column(nullable = false)
+    @GeneratedValue
     @Setter(AccessLevel.NONE)
-    private long id;
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "repair_id", nullable = false)
@@ -28,7 +34,7 @@ public class RepairEvent {
 
     @Convert(converter = RepairEventConverter.class)
     @Column(nullable = false)
-    private RepairEvent repairEvent;
+    private RepairEventEnum repairEvent;
 
     @Column(nullable = false)
     private ZonedDateTime eventTimestamp;
