@@ -1,4 +1,4 @@
-package io.github.shymega.repaircafe.api.domain;
+package io.github.shymega.repaircafe.api.models;
 
 /* Backed by Postgres native */
 
@@ -6,18 +6,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "repairers")
+import java.io.Serializable;
+import java.util.UUID;
+
+@Table(name = "volunteers")
+@Entity
 @ToString
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Repairer {
+public class Volunteer implements Serializable {
     @Id
     @Column(nullable = false)
+    @GeneratedValue
     @Setter(AccessLevel.NONE)
-    private long id;
+    private UUID id;
 
     @Column(nullable = false)
     private String firstName;
