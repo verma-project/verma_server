@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.shymega.repaircafe.api.enums.RepairEventEnum;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -37,8 +35,7 @@ public class Repair implements Serializable {
     @OneToMany(mappedBy = "repair_id")
     private Set<RepairEventEnum> events;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "visitor_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Visitor visitor;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ticket_id", referencedColumnName = "id")
+    private Ticket ticket;
 }

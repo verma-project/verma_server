@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "repair_events")
@@ -27,19 +28,17 @@ public class TicketEvent implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "in_person_ticket_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private InPersonTicket inPersonTicketId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "online_ticket_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private OnlineTicket onlineTicketId;
-
     @Convert(converter = RepairEventConverter.class)
     @Column(nullable = false)
     private TicketEventEnum ticketEvent;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ticket_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Set<Ticket> tickets;
+
+    @OneToOne(mappedBy = "ticket")
+    private Ticket ticket;
 
     @Column(nullable = false)
     private ZonedDateTime eventTimestamp;
