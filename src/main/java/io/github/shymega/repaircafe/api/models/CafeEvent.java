@@ -1,6 +1,7 @@
 package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.shymega.repaircafe.api.enums.CafeEventEnum;
 import io.github.shymega.repaircafe.api.utils.converters.CafeEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,7 +29,7 @@ public class CafeEvent implements Serializable {
 
     @Column(nullable = false)
     @Convert(converter = CafeEventConverter.class)
-    private CafeEvent cafeEvent;
+    private CafeEventEnum cafeEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cafe_id", nullable = false)

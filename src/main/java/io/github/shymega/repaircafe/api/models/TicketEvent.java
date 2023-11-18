@@ -2,7 +2,7 @@ package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.shymega.repaircafe.api.enums.TicketEventEnum;
-import io.github.shymega.repaircafe.api.utils.converters.RepairEventConverter;
+import io.github.shymega.repaircafe.api.utils.converters.TicketEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -28,8 +28,7 @@ public class TicketEvent implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Convert(converter = RepairEventConverter.class)
-    @Column(nullable = false)
+    @Convert(converter = TicketEventConverter.class)
     private TicketEventEnum ticketEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
