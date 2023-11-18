@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "cafes")
-@Entity
+@Entity(name = "Cafe")
 @ToString
 @Builder
 @Data

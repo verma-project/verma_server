@@ -11,7 +11,7 @@ import java.util.UUID;
 /* Backed by Postgres native */
 
 @Table(name = "repairs")
-@Entity
+@Entity(name = "Repair")
 @ToString
 @Builder
 @Data

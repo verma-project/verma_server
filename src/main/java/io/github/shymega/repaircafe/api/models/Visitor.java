@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "visitors")
-@Entity
+@Entity(name = "Visitor")
 @ToString
 @Builder
 @Data

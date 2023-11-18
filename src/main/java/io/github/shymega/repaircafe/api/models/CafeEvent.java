@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Table(name = "cafe_events")
-@Entity
+@Entity(name = "CafeEvent")
 @ToString
 @Builder
 @Data

@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Table(name = "volunteers")
-@Entity
+@Entity(name = "Volunteer")
 @ToString
 @Builder
 @Data

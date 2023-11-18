@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "repair_events")
-@Entity
+@Entity(name = "TicketEvent")
 @ToString
 @Builder
 @Data
