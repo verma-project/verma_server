@@ -1,7 +1,6 @@
 package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.shymega.repaircafe.api.enums.RepairEventEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
