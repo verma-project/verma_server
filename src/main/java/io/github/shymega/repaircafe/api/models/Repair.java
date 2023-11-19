@@ -43,7 +43,6 @@ public class Repair implements Serializable {
     @NotEmpty
     private String itemAge;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Volunteer volunteer;
