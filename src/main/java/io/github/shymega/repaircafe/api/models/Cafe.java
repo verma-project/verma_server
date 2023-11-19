@@ -36,6 +36,9 @@ public class Cafe implements Serializable {
     private String cafeContactEmail;
 
     @Column(nullable = false)
-    @OneToMany(mappedBy = "cafe_id")
+    @OneToMany(mappedBy = "cafe")
     private Set<CafeEvent> cafeEvents;
+
+    @OneToMany(mappedBy = "cafe")
+    private Set<Ticket> tickets;
 }

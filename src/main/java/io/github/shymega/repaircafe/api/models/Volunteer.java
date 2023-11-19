@@ -5,6 +5,8 @@ package io.github.shymega.repaircafe.api.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -33,7 +35,7 @@ public class Volunteer implements Serializable {
     @Column(nullable = false)
     private boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "repair_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Repair repair;
 }

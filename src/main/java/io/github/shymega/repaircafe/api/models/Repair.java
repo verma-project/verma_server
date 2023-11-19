@@ -3,6 +3,8 @@ package io.github.shymega.repaircafe.api.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -26,15 +28,15 @@ public class Repair implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private boolean banned;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Volunteer volunteer;
 
-    @OneToMany(mappedBy = "repair_id")
-    private Set<Volunteer> volunteers;
+    @OneToMany(mappedBy = "repair", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<RepairEvent> repairEvents;
 
-    @OneToMany(mappedBy = "repair_id")
-    private Set<RepairEventEnum> events;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id", referencedColumnName = "id")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "repairs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Ticket> ticket;
 }

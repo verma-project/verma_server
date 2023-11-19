@@ -31,12 +31,8 @@ public class TicketEvent implements Serializable {
     @Convert(converter = TicketEventConverter.class)
     private TicketEventEnum ticketEvent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ticket_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Set<Ticket> tickets;
-
-    @OneToOne(mappedBy = "ticket")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Ticket ticket;
 
     @Column(nullable = false)
