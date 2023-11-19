@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Cafe implements Serializable {
     @Id
     @Column(nullable = false)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
