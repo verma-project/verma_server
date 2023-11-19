@@ -37,9 +37,10 @@ public class Visitor implements Serializable {
     /// Null value allowed, only populate for take-home repairs.
     private String visitorTel;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ticket_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @OneToMany(mappedBy = "visitor",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Ticket> tickets;
 
     @Column(nullable = false)

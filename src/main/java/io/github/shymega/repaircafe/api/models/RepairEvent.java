@@ -27,10 +27,9 @@ public class RepairEvent implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "repair_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Repair repair_id;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Repair repair;
 
     @Convert(converter = RepairEventConverter.class)
     @Column(nullable = false)

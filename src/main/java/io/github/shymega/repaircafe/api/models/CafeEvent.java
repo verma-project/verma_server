@@ -31,10 +31,9 @@ public class CafeEvent implements Serializable {
     @Convert(converter = CafeEventConverter.class)
     private CafeEventEnum cafeEvent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "cafe_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Cafe cafe_id;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Cafe cafe;
 
     @Column(nullable = false)
     private ZonedDateTime eventTimestamp;
