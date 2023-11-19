@@ -1,12 +1,15 @@
 package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.shymega.repaircafe.api.utils.converters.StringListConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +29,19 @@ public class Repair implements Serializable {
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
+
+    @Column(nullable = false)
+    @NotEmpty
+    @Convert(converter = StringListConverter.class)
+    private List<String> details;
+
+    @Column(nullable = false)
+    @NotEmpty
+    private String itemValue;
+
+    @Column(nullable = false)
+    @NotEmpty
+    private String itemAge;
 
     @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

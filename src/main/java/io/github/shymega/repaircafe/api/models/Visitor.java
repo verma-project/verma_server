@@ -2,6 +2,8 @@ package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -26,19 +28,23 @@ public class Visitor implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private String visitorFn;
+    @NotEmpty
+    private String firstName;
 
     @Column(nullable = false)
-    private String visitorSn;
+    @NotEmpty
+    private String lastName;
 
-    @Column(nullable = false)
-    private String visitorEmail;
+    @Column(nullable = false, unique = true)
+    @NotEmpty
+    @Email
+    private String emailAddr;
 
     // Null value allowed, only populate for take-home repairs.
-    private String visitorAddress;
+    private String residentialAddress;
 
     /// Null value allowed, only populate for take-home repairs.
-    private String visitorTel;
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "visitor",
         fetch = FetchType.LAZY,
