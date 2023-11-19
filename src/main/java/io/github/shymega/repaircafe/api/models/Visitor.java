@@ -31,6 +31,9 @@ public class Visitor implements Serializable {
     @Column(nullable = false)
     private String visitorSn;
 
+    @Column(nullable = false)
+    private String visitorEmail;
+
     // Null value allowed, only populate for take-home repairs.
     private String visitorAddress;
 
