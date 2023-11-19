@@ -36,5 +36,7 @@ public class RepairEvent implements Serializable {
     private RepairEventEnum repairEvent;
 
     @Column(nullable = false)
-    private ZonedDateTime eventTimestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
+    private ZonedDateTime eventTimestamp = ZonedDateTime.now();
 }
