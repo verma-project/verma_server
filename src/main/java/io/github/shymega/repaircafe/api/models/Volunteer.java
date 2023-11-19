@@ -4,6 +4,8 @@ package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -27,10 +29,17 @@ public class Volunteer implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
+    @NotEmpty
     private String firstName;
 
     @Column(nullable = false)
+    @NotEmpty
     private String lastName;
+
+    @Column(nullable = false, unique = true)
+    @NotEmpty
+    @Email
+    private String emailAddress;
 
     @Column(nullable = false)
     private boolean active;

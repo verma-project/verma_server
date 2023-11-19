@@ -2,6 +2,8 @@ package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -23,16 +25,21 @@ public class Cafe implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @NotEmpty
     private String cafeShortId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @NotEmpty
     private String cafeName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @NotEmpty
     private String cafeWebsite;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @Email
+    @NotEmpty
     private String cafeContactEmail;
 
     @Column(nullable = false)
