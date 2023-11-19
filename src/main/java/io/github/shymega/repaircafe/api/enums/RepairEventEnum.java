@@ -1,8 +1,6 @@
 package io.github.shymega.repaircafe.api.enums;
 
 public enum RepairEventEnum {
-    /* Repair accepted. */
-    ACCEPTED,
     /* Repair awaiting repairer(s) */
     AWAITING,
     /* Repair currently in progress */
