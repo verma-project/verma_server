@@ -36,5 +36,7 @@ public class TicketEvent implements Serializable {
     private Ticket ticket;
 
     @Column(nullable = false)
-    private ZonedDateTime eventTimestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
+    private ZonedDateTime eventTimestamp = ZonedDateTime.now();
 }

@@ -36,5 +36,7 @@ public class CafeEvent implements Serializable {
     private Cafe cafe;
 
     @Column(nullable = false)
-    private ZonedDateTime eventTimestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
+    private ZonedDateTime eventTimestamp = ZonedDateTime.now();
 }
