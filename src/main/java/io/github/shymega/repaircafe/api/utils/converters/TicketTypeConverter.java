@@ -15,7 +15,7 @@ public class TicketTypeConverter implements AttributeConverter<TicketTypeEnum, S
 
     @Override
     public TicketTypeEnum convertToEntityAttribute(String s) {
-        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Input string is not populated.");
+        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Value (String) is not populated.");
 
         return TicketTypeEnum.valueOf(s);
     }
