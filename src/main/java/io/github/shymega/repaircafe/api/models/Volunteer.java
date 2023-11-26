@@ -2,6 +2,7 @@ package io.github.shymega.repaircafe.api.models;
 
 /* Backed by Postgres native */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -40,6 +41,18 @@ public class Volunteer implements Serializable {
     @NotEmpty
     @Email
     private String emailAddress;
+
+    private String initials;
+
+    @PrePersist
+    @JsonIgnore
+    private void genInitials() {
+        if (initials != null) return;
+
+        this.initials = String.format("%s%s",
+            this.firstName.charAt(0),
+            this.lastName.charAt(0));
+    }
 
     @Column(nullable = false)
     private boolean active;
