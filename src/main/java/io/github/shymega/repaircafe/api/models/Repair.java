@@ -1,6 +1,8 @@
 package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.shymega.repaircafe.api.enums.RepairTypeEnum;
+import io.github.shymega.repaircafe.api.utils.converters.RepairTypeConverter;
 import io.github.shymega.repaircafe.api.utils.converters.StringListConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -42,6 +44,10 @@ public class Repair implements Serializable {
     @Column(nullable = false)
     @NotEmpty
     private String itemAge;
+
+    @Column(nullable = false)
+    @Convert(converter = RepairTypeConverter.class)
+    private RepairTypeEnum repairType;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
