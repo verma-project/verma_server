@@ -16,7 +16,7 @@ public class RepairTypeConverter implements AttributeConverter<RepairTypeEnum, S
 
     @Override
     public RepairTypeEnum convertToEntityAttribute(String s) {
-        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Input string is not populated.");
+        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Value (String) is not populated.");
 
         return RepairTypeEnum.valueOf(s);
     }

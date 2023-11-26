@@ -15,7 +15,7 @@ public class CafeEventConverter implements AttributeConverter<CafeEventEnum, Str
 
     @Override
     public CafeEventEnum convertToEntityAttribute(String s) {
-        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
+        if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Value (String) is not populated.");
 
         return CafeEventEnum.valueOf(s);
     }

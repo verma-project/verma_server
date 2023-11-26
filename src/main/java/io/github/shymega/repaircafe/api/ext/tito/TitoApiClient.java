@@ -23,7 +23,7 @@ public abstract class TitoApiClient extends BaseRestApiClient {
         if (baseUrl == null || baseUrl.isEmpty()) throw new IllegalArgumentException("No base URL provided!");
         if (BASE_URL == null || BASE_URL.isEmpty()) BASE_URL = baseUrl;
         if (CLIENT == null)
-            throw new IllegalArgumentException("Client field is NULL, configure with appropriate method first!");
+            throw new IllegalArgumentException("Client field is null, configure with appropriate method first!");
 
         CLIENT.mutate()
             .baseUrl(baseUrl);

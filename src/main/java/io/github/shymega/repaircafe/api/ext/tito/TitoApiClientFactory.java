@@ -2,7 +2,7 @@ package io.github.shymega.repaircafe.api.ext.tito;
 
 public class TitoApiClientFactory {
     public TitoApiClient getClient(TitoApiClientType clientType, String apiToken) throws IllegalArgumentException {
-        if (clientType == null) throw new IllegalArgumentException("Client type variant is NULL!");
+        if (clientType == null) throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
 
         return switch (clientType) {
             case ADMIN -> new TitoAdminApiClient(apiToken);
