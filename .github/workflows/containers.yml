@@ -21,7 +21,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2.12
         with:
           image: ${{ github.repository }}
-          tags: ${{ contains(github.ref_name, 'main') && 'latest' || github.ref_name }}
+          tags: ${{ github.ref_name }}
           containerfiles: Dockerfile
 
       - name: Push container to GHCR.io
