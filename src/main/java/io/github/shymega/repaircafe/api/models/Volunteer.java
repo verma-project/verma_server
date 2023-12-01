@@ -4,6 +4,7 @@ package io.github.shymega.repaircafe.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.shymega.repaircafe.api.enums.SkillsEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -59,7 +60,11 @@ public class Volunteer implements Serializable {
     @Column(nullable = false)
     private boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ElementCollection(targetClass = SkillsEnum.class)
+    @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
+    @Enumerated(EnumType.STRING)
+    private List<SkillsEnum> skills;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Repair> repairs;
