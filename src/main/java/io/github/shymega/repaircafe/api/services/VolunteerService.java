@@ -1,11 +1,16 @@
 package io.github.shymega.repaircafe.api.services;
 
 import io.github.shymega.repaircafe.api.db.repositories.VolunteerRepository;
+import io.github.shymega.repaircafe.api.enums.SkillsEnum;
 import io.github.shymega.repaircafe.api.models.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class VolunteerService {
@@ -14,6 +19,16 @@ public class VolunteerService {
 
     public Volunteer create(Volunteer o) {
         return repository.saveAndFlush(o);
+    }
+
+    public Collection<Volunteer> findAllRepairersBySkills(List<SkillsEnum> skillsEnumList) {
+        return this.repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(obj -> skillsEnumList.stream()
+                .anyMatch(obj.getSkills()::contains))
+            .collect(Collectors.toList());
+
     }
 
     public void delete(UUID id) {
