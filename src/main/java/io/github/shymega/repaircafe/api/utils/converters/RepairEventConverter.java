@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class RepairEventConverter implements AttributeConverter<RepairEventEnum, String> {
+public final class RepairEventConverter implements AttributeConverter<RepairEventEnum, String> {
 
     @Override
     public String convertToDatabaseColumn(RepairEventEnum repairEvent) {

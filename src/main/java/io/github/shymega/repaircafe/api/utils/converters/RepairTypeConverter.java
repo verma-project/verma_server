@@ -6,7 +6,7 @@ import jakarta.persistence.Convert;
 import jakarta.persistence.Converter;
 
 @Converter
-public class RepairTypeConverter implements AttributeConverter<RepairTypeEnum, String> {
+public final class RepairTypeConverter implements AttributeConverter<RepairTypeEnum, String> {
     @Override
     public String convertToDatabaseColumn(RepairTypeEnum repairTypeEnum) {
         if (repairTypeEnum == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");

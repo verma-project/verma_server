@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class TicketEventConverter implements AttributeConverter<TicketEventEnum, String> {
+public final class TicketEventConverter implements AttributeConverter<TicketEventEnum, String> {
 
     @Override
     public String convertToDatabaseColumn(TicketEventEnum ticketEventEnum) {

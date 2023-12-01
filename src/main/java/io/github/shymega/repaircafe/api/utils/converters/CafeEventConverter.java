@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class CafeEventConverter implements AttributeConverter<CafeEventEnum, String> {
+public final class CafeEventConverter implements AttributeConverter<CafeEventEnum, String> {
     @Override
     public String convertToDatabaseColumn(CafeEventEnum cafeEventEnum) {
         if (cafeEventEnum == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
