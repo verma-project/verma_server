@@ -5,6 +5,8 @@ import io.github.shymega.repaircafe.api.models.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -14,6 +16,14 @@ public class VisitorService {
 
     public Visitor create(Visitor o) {
         return repository.saveAndFlush(o);
+    }
+
+    public Collection<Visitor> getAllBannedVisitors() {
+        return repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(Visitor::isBanned)
+            .toList();
     }
 
     public void ban(UUID id) {
