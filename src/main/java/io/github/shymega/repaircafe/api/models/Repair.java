@@ -49,9 +49,9 @@ public class Repair implements Serializable {
     @Convert(converter = RepairTypeConverter.class)
     private RepairTypeEnum repairType;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "repairs")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Volunteer volunteer;
+    private Set<Volunteer> volunteers;
 
     @OneToMany(mappedBy = "repair", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
