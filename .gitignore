@@ -37,3 +37,14 @@ build/
 .vscode/
 
 /src/main/resources/application.properties
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
