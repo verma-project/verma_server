@@ -1,4 +1,4 @@
-FROM docker.io/eclipse-temurin:17-jre AS base
+FROM docker.io/eclipse-temurin:17-jdk AS base
 
 FROM base AS build
 
