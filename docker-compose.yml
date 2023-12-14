@@ -1,26 +1,26 @@
 version: "3"
 volumes:
-  postgresql_repair_cafe_backend_data:
+  postgresql_dera_spring_app_data:
 services:
-  postgresql_repair_cafe_backend:
+  postgresql_dera_spring_app:
     image: "docker.io/postgres:alpine"
-    hostname: "postgres_repair_cafe_backend"
-    container_name: "postgres_repair_cafe_backend"
+    hostname: "postgres_dera_spring_app"
+    container_name: "postgres_dera_spring_app"
     restart: on-failure
     volumes:
-      - "postgresql_repair_cafe_backend_data:/var/lib/postgresql/data"
+      - "postgresql_dera_spring_app_data:/var/lib/postgresql/data"
     environment:
-      - "POSTGRES_USER=${DB_USER:-repair_cafe_backend_user}"
+      - "POSTGRES_USER=${DB_USER:-dera_spring_app_user}"
       - "POSTGRES_PASSWORD=${DB_PASSWORD:-password123}"
-      - "POSTGRES_DB=${DB_NAME:-repair_cafe_backend_db}"
-  repair_cafe_backend:
+      - "POSTGRES_DB=${DB_NAME:-dera_spring_app_db}"
+  dera_spring_app:
     build:
       context: .
-    image: "ghcr.io/chineham-repair-cafe/repair_cafe_backend:latest"
-    hostname: "repair_cafe_backend"
-    container_name: "repair_cafe_backend"
+    image: "ghcr.io/dera-project/dera_spring_app:latest"
+    hostname: "dera_spring_app"
+    container_name: "dera_spring_app"
     restart: on-failure
     depends_on:
-      - postgresql_repair_cafe_backend
+      - postgresql_dera_spring_app
     ports:
       - "8080:8080"

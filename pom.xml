@@ -15,12 +15,12 @@ SPDX-License-Identifier: AGPL-3.0-only
         <version>3.2.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>io.github.shymega.repaircafe</groupId>
+    <groupId>org.deraproject.apps.server</groupId>
     <packaging>war</packaging>
-    <artifactId>repair-cafe-backend</artifactId>
+    <artifactId>dera-backend</artifactId>
     <version>0.1.0</version>
-    <name>Backend API for Repair Cafes.</name>
-    <description>This is an Spring Boot application for Repair Cafes.</description>
+    <name>Dera Backend API for Repair Cafes.</name>
+    <description>This is the Dera Project's main server application for Repair Cafes.</description>
     <properties>
         <java.version>17</java.version>
     </properties>
