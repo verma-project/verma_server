@@ -1,8 +1,9 @@
 package io.github.shymega.repaircafe.api.services;
 
+import io.github.shymega.repaircafe.api.db.repositories.CafeRepository;
 import io.github.shymega.repaircafe.api.db.repositories.VolunteerRepository;
 import io.github.shymega.repaircafe.api.enums.SkillsEnum;
-import io.github.shymega.repaircafe.api.models.Volunteer;
+import io.github.shymega.repaircafe.api.entities.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 public class VolunteerService {
     @Autowired
     private VolunteerRepository repository;
+
+    @Autowired
+    private CafeRepository cafeRepository;
 
     public Volunteer create(Volunteer o) {
         return repository.saveAndFlush(o);

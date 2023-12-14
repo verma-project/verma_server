@@ -1,4 +1,4 @@
-package io.github.shymega.repaircafe.api.models;
+package io.github.shymega.repaircafe.api.entities;
 
 /* Backed by Postgres native */
 

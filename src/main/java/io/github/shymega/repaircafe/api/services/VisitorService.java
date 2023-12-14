@@ -1,7 +1,7 @@
 package io.github.shymega.repaircafe.api.services;
 
 import io.github.shymega.repaircafe.api.db.repositories.VisitorRepository;
-import io.github.shymega.repaircafe.api.models.Visitor;
+import io.github.shymega.repaircafe.api.entities.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,22 @@ public class VisitorService {
             .stream()
             .filter(Objects::nonNull)
             .filter(Visitor::isBanned)
+            .toList();
+    }
+
+    public Collection<Visitor> getAllUnbannedVisitors() {
+        return repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(v -> !v.isBanned())
+            .toList();
+    }
+
+    public Collection<Visitor> getAllVisitorsBySurname(String surname) {
+        return repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(v -> Objects.equals(v.getLastName(), surname))
             .toList();
     }
 

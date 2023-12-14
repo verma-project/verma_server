@@ -1,8 +1,8 @@
-package io.github.shymega.repaircafe.api.models;
+package io.github.shymega.repaircafe.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.shymega.repaircafe.api.enums.CafeEventEnum;
-import io.github.shymega.repaircafe.api.utils.converters.CafeEventConverter;
+import io.github.shymega.repaircafe.api.enums.TicketEventEnum;
+import io.github.shymega.repaircafe.api.utils.converters.TicketEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -12,28 +12,27 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Table(name = "cafe_events")
-@Entity(name = "CafeEvent")
+@Table(name = "repair_events")
+@Entity(name = "TicketEvent")
 @ToString
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CafeEvent implements Serializable {
+public class TicketEvent implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Column(nullable = false)
-    @Convert(converter = CafeEventConverter.class)
-    private CafeEventEnum cafeEvent;
+    @Convert(converter = TicketEventConverter.class)
+    private TicketEventEnum ticketEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Cafe cafe;
+    private Ticket ticket;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

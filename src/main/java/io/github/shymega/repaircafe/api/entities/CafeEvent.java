@@ -1,8 +1,8 @@
-package io.github.shymega.repaircafe.api.models;
+package io.github.shymega.repaircafe.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.shymega.repaircafe.api.enums.RepairEventEnum;
-import io.github.shymega.repaircafe.api.utils.converters.RepairEventConverter;
+import io.github.shymega.repaircafe.api.enums.CafeEventEnum;
+import io.github.shymega.repaircafe.api.utils.converters.CafeEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -12,28 +12,28 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Table(name = "repair_events")
-@Entity(name = "RepairEvent")
+@Table(name = "cafe_events")
+@Entity(name = "CafeEvent")
 @ToString
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RepairEvent implements Serializable {
+public class CafeEvent implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
+    @Column(nullable = false)
+    @Convert(converter = CafeEventConverter.class)
+    private CafeEventEnum cafeEvent;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Repair repair;
-
-    @Convert(converter = RepairEventConverter.class)
-    @Column(nullable = false)
-    private RepairEventEnum repairEvent;
+    private Cafe cafe;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

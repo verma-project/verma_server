@@ -1,4 +1,4 @@
-package io.github.shymega.repaircafe.api.models;
+package io.github.shymega.repaircafe.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.shymega.repaircafe.api.enums.RepairTypeEnum;

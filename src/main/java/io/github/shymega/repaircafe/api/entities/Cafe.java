@@ -1,5 +1,6 @@
-package io.github.shymega.repaircafe.api.models;
+package io.github.shymega.repaircafe.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -48,4 +49,14 @@ public class Cafe implements Serializable {
 
     @OneToMany(mappedBy = "cafe")
     private Set<Ticket> tickets;
+
+    @PrePersist
+    @JsonIgnore
+    private void populateCafeShortId() {
+        if (cafeShortId != null) return;
+
+        // Default short ID - four chars.
+        cafeShortId = cafeName.trim()
+            .substring(0, 3);
+    }
 }
