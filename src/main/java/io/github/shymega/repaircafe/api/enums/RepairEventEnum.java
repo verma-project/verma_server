@@ -13,4 +13,6 @@ public enum RepairEventEnum {
     DELAYED,
     /* Item repaired and returned to guest. */
     REPAIRED,
+    /* Item requires part(s) */
+    PENDING_PARTS
 }
