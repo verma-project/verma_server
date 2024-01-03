@@ -1,4 +1,4 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.deraproject.apps.server.enums.TicketTypeEnum;
@@ -37,9 +37,9 @@ public class Ticket implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Visitor visitor;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "repairs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Repair repairs;
+    private Set<Repair> repairs;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -48,4 +48,7 @@ public class Ticket implements Serializable {
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TicketEvent> ticketEvents;
+
+    @Column(nullable = false)
+    private Integer associatedItems = repairs.size();
 }

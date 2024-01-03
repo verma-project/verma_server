@@ -1,4 +1,4 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.deraproject.apps.server.enums.RepairTypeEnum;
@@ -7,6 +7,7 @@ import org.deraproject.apps.server.utils.converters.StringListConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.deraproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -39,10 +40,12 @@ public class Repair implements Serializable {
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String itemValue;
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String itemAge;
 
     @Column(nullable = false)
@@ -57,7 +60,7 @@ public class Repair implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<RepairEvent> repairEvents;
 
-    @OneToMany(mappedBy = "repairs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Ticket> ticket;
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", insertable = false, updatable = false)
+    private Ticket ticket;
 }

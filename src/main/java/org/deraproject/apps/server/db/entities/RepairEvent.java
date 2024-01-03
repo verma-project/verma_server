@@ -1,4 +1,4 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.deraproject.apps.server.enums.RepairEventEnum;

@@ -1,10 +1,11 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.deraproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -29,21 +30,26 @@ public class Visitor implements Serializable {
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String firstName;
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String lastName;
 
     @Column(nullable = false, unique = true)
     @NotEmpty
     @Email
+    @Convert(converter = StringTrimConverter.class)
     private String emailAddr;
 
     // Null value allowed, only populate for take-home repairs.
+    @Convert(converter = StringTrimConverter.class)
     private String residentialAddress;
 
     /// Null value allowed, only populate for take-home repairs.
+    @Convert(converter = StringTrimConverter.class)
     private String phoneNumber;
 
     @OneToMany(mappedBy = "visitor",

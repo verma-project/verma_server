@@ -1,7 +1,7 @@
 package org.deraproject.apps.server.db.repositories;
 
-import org.deraproject.apps.server.entities.Repair;
-import org.deraproject.apps.server.entities.RepairEvent;
+import org.deraproject.apps.server.db.entities.Repair;
+import org.deraproject.apps.server.db.entities.RepairEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.ZonedDateTime;

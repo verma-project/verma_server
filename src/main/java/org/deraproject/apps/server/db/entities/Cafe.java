@@ -1,4 +1,4 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.deraproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -26,21 +27,26 @@ public class Cafe implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = fal
+        se, unique = true)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String cafeShortId;
 
     @Column(nullable = false, unique = true)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String cafeName;
 
     @Column(nullable = false, unique = true)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String cafeWebsite;
 
     @Column(nullable = false, unique = true)
     @Email
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String cafeContactEmail;
 
     @Column(nullable = false)

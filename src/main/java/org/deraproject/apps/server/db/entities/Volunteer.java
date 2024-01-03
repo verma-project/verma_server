@@ -1,4 +1,4 @@
-package org.deraproject.apps.server.entities;
+package org.deraproject.apps.server.db.entities;
 
 /* Backed by Postgres native */
 
@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.deraproject.apps.server.enums.VolunteerTypeEnum;
+import org.deraproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -34,17 +36,21 @@ public class Volunteer implements Serializable {
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String firstName;
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = StringTrimConverter.class)
     private String lastName;
 
     @Column(nullable = false, unique = true)
     @NotEmpty
     @Email
+    @Convert(converter = StringTrimConverter.class)
     private String emailAddress;
 
+    @Convert(converter = StringTrimConverter.class)
     private String initials;
 
     @PrePersist
@@ -64,6 +70,11 @@ public class Volunteer implements Serializable {
     @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
     @Enumerated(EnumType.STRING)
     private List<SkillsEnum> skills;
+
+    @ElementCollection(targetClass = VolunteerTypeEnum.class)
+    @JoinTable(name = "Volunteer_Type", joinColumns = @JoinColumn(name = "volunteer_id"))
+    @Enumerated(EnumType.STRING)
+    private List<VolunteerTypeEnum> volunteerType;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
