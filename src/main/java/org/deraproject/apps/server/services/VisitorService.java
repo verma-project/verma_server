@@ -33,7 +33,7 @@ public class VisitorService {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
-            .filter(v -> !v.isBanned())
+            .filter(Visitor::isNotBanned)
             .toList();
     }
 

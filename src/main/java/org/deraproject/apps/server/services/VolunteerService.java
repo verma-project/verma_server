@@ -28,10 +28,11 @@ public class VolunteerService {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
+            .filter(Volunteer::isActive)
             .filter(obj -> skillsEnumList.stream()
                 .anyMatch(obj.getSkills()::contains))
             .filter(obj -> repairVolunteerTypeList.stream()
-                .anyMatch(obj.getVolunteerType()::equals))
+                .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
 
@@ -39,8 +40,9 @@ public class VolunteerService {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
+            .filter(Volunteer::isActive)
             .filter(obj -> frontOfHouseVolunteerTypeList.stream()
-                .anyMatch(obj.getVolunteerType()::equals))
+                .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
 
@@ -48,8 +50,9 @@ public class VolunteerService {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
+            .filter(Volunteer::isActive)
             .filter(obj -> repairVolunteerTypeList.stream()
-                .anyMatch(obj.getVolunteerType()::equals))
+                .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
 
