@@ -60,7 +60,7 @@ public class Cafe implements Serializable {
     private void populateCafeShortId() {
         if (cafeShortId != null) return;
 
-        // Default short ID - four chars.
+        // Default short ID – four chars.
         cafeShortId = cafeName.trim()
             .substring(0, 3);
     }
