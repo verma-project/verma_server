@@ -27,8 +27,7 @@ public class Cafe implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Column(nullable = fal
-        se, unique = true)
+    @Column(nullable = false, unique = true)
     @NotEmpty
     @Convert(converter = StringTrimConverter.class)
     private String cafeShortId;
