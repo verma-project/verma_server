@@ -47,7 +47,9 @@ public final class TitoApiClientFactory {
         }
     }
 
-    @Getter
+    /*
+     * We use an abstract class, because Interfaces can't have protected fields, which we need.
+     */
     public static abstract class TitoApiClient extends BaseRestApiClient {
         protected WebClient CLIENT = null;
         private String API_TOKEN = null;

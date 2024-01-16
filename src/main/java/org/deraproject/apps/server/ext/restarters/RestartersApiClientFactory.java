@@ -27,13 +27,16 @@ public final class RestartersApiClientFactory {
                 configureCredentials(apiToken);
                 configureBaseUrl(RESTARTERS_FIXOMETER_API_BASE_URL);;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // handle
             }
         }
     }
 
-    @Getter
+    /*
+     * We use an abstract class, because Interfaces can't have protected fields, which we need.
+     */
     public static abstract class RestartersApiClient extends BaseRestApiClient {
+
         protected WebClient CLIENT = null;
         private String API_TOKEN = null;
         private String BASE_URL = null;
