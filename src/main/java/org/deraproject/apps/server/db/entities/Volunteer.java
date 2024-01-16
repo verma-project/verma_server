@@ -66,6 +66,10 @@ public class Volunteer implements Serializable {
     @Column(nullable = false)
     private boolean active;
 
+    public boolean isNotActive() {
+        return !isActive();
+    }
+
     @ElementCollection(targetClass = SkillsEnum.class)
     @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
     @Enumerated(EnumType.STRING)

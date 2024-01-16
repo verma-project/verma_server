@@ -60,4 +60,8 @@ public class Visitor implements Serializable {
 
     @Column(nullable = false)
     private boolean banned;
+
+    public boolean isNotBanned() {
+        return !isBanned();
+    }
 }
