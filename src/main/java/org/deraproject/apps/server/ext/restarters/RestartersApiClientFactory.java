@@ -6,7 +6,7 @@ import org.deraproject.apps.server.utils.bases.BaseRestApiClient;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public final class RestartersApiClientFactory {
-    public RestartersApiClient getClient(RestartersApiClientType clientType, String apiToken) {
+    public RestartersApiClient getClient(final RestartersApiClientType clientType, final String apiToken) {
         if (clientType == null) throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
         if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for Restarters supplied. Pass a valid token.");
 
@@ -22,7 +22,7 @@ public final class RestartersApiClientFactory {
     private static final class RestartersFixometerApiClient extends RestartersApiClient {
         private final String RESTARTERS_FIXOMETER_API_BASE_URL = "";
 
-        public RestartersFixometerApiClient(String apiToken) {
+        public RestartersFixometerApiClient(final String apiToken) {
             try {
                 configureCredentials(apiToken);
                 configureBaseUrl(RESTARTERS_FIXOMETER_API_BASE_URL);;
@@ -38,7 +38,7 @@ public final class RestartersApiClientFactory {
         private String API_TOKEN = null;
         private String BASE_URL = null;
 
-        void configureCredentials(String apiToken) throws IllegalArgumentException {
+        void configureCredentials(final String apiToken) throws IllegalArgumentException {
             if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("No API token provided!");
             if (API_TOKEN == null || API_TOKEN.isEmpty()) API_TOKEN = apiToken;
             if (CLIENT == null) CLIENT = super.webClient
@@ -47,7 +47,7 @@ public final class RestartersApiClientFactory {
                 .build();
         }
 
-        void configureBaseUrl(String baseUrl) {
+        void configureBaseUrl(final String baseUrl) {
             if (baseUrl == null || baseUrl.isEmpty()) throw new IllegalArgumentException("No base URL provided!");
             if (BASE_URL == null || BASE_URL.isEmpty()) BASE_URL = baseUrl;
             if (CLIENT == null)

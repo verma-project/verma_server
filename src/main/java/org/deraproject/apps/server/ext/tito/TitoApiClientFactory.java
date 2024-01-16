@@ -5,7 +5,7 @@ import lombok.Getter;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public final class TitoApiClientFactory {
-    public TitoApiClient getClient(TitoApiClientType clientType, String apiToken) throws IllegalArgumentException {
+    public TitoApiClient getClient(final TitoApiClientType clientType, final String apiToken) throws IllegalArgumentException {
         if (clientType == null) throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
         if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for Ti.to supplied. Pass a valid token.");
 
@@ -23,7 +23,7 @@ public final class TitoApiClientFactory {
     private static final class TitoAdminApiClient extends TitoApiClient {
         private final String TITO_ADMIN_API_BASE_URL = "https://api.tito.io/v3/";
 
-        public TitoAdminApiClient(String apiToken) {
+        public TitoAdminApiClient(final String apiToken) {
             try {
                 configureCredentials(apiToken);
                 configureBaseUrl(TITO_ADMIN_API_BASE_URL);
@@ -36,7 +36,7 @@ public final class TitoApiClientFactory {
     private static final class TitoCheckinApiClient extends TitoApiClient {
         private final String TITO_CHECKIN_BASE_URL = "https://checkin.tito.io/";
 
-        public TitoCheckinApiClient(String apiToken) {
+        public TitoCheckinApiClient(final String apiToken) {
             try {
                 if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for the Ti.to Check-in API supplied");
                 configureCredentials(apiToken);
@@ -53,7 +53,7 @@ public final class TitoApiClientFactory {
         private String API_TOKEN = null;
         private String BASE_URL = null;
 
-        void configureCredentials(String apiToken) throws IllegalArgumentException {
+        void configureCredentials(final String apiToken) throws IllegalArgumentException {
             if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("No API token provided!");
             if (API_TOKEN == null || API_TOKEN.isEmpty()) API_TOKEN = apiToken;
             if (CLIENT == null) CLIENT = super.webClient
@@ -62,7 +62,7 @@ public final class TitoApiClientFactory {
                 .build();
         }
 
-        void configureBaseUrl(String baseUrl) {
+        void configureBaseUrl(final String baseUrl) {
             if (baseUrl == null || baseUrl.isEmpty()) throw new IllegalArgumentException("No base URL provided!");
             if (BASE_URL == null || BASE_URL.isEmpty()) BASE_URL = baseUrl;
             if (CLIENT == null)
