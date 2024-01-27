@@ -52,6 +52,12 @@ public class Repair implements Serializable {
     @Convert(converter = RepairTypeConverter.class)
     private RepairTypeEnum repairType;
 
+    @Column(nullable = false)
+    @NotEmpty
+    @Convert(converter = StringListConverter.class)
+    private String repairTypeCustom;
+
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "repairs")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Volunteer> volunteers;
@@ -63,4 +69,8 @@ public class Repair implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ticket_id", insertable = false, updatable = false)
     private Ticket ticket;
+
+    private boolean isCustomRepairType() {
+        return repairType.equals(RepairTypeEnum.OTHER) && (repairTypeCustom != null && !repairTypeCustom.isEmpty());
+    }
 }
