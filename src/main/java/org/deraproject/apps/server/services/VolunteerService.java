@@ -20,11 +20,11 @@ public class VolunteerService {
     private final List<VolunteerTypeEnum> repairVolunteerTypeList = List.of(VolunteerTypeEnum.REPAIRER);
     private final List<VolunteerTypeEnum> frontOfHouseVolunteerTypeList = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
 
-    public Volunteer create(Volunteer o) {
+    public Volunteer create(final Volunteer o) {
         return repository.saveAndFlush(o);
     }
 
-    public Collection<Volunteer> findAllRepairersBySkills(List<SkillsEnum> skillsEnumList) {
+    public Collection<Volunteer> findAllRepairersBySkills(final List<SkillsEnum> skillsEnumList) {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
@@ -56,26 +56,26 @@ public class VolunteerService {
             .collect(Collectors.toList());
     }
 
-    public void delete(UUID id) {
+    public void delete(final UUID id) {
         disable(id);
     }
 
-    public void disable(UUID id) {
+    public void disable(final UUID id) {
         modifyActive(id, false);
     }
 
-    public void enable(UUID id) {
+    public void enable(final UUID id) {
         modifyActive(id, true);
     }
 
-    private void modifyActive(UUID id, boolean state) throws NoSuchElementException {
+    private void modifyActive(final UUID id, final boolean state) throws NoSuchElementException {
         if (id == null) throw new IllegalArgumentException("No ID provided.");
         Volunteer o = null;
 
         try {
             o = repository.findById(id)
                 .orElseThrow();
-        } catch (NoSuchElementException e) {
+        } catch (final NoSuchElementException e) {
             log.error("Unable to find Volunteer with id: " + id);
             throw new NoSuchElementException("Volunteer with ID: " + id + " - not found.", e);
         }

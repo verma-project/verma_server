@@ -27,7 +27,7 @@ public final class TitoApiClientFactory {
             try {
                 configureCredentials(apiToken);
                 configureBaseUrl(TITO_ADMIN_API_BASE_URL);
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
@@ -41,7 +41,7 @@ public final class TitoApiClientFactory {
                 if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for the Ti.to Check-in API supplied");
                 configureCredentials(apiToken);
                 configureBaseUrl(TITO_CHECKIN_BASE_URL);
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }

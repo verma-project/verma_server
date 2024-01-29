@@ -26,7 +26,7 @@ public final class RestartersApiClientFactory {
             try {
                 configureCredentials(apiToken);
                 configureBaseUrl(RESTARTERS_FIXOMETER_API_BASE_URL);;
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 e.printStackTrace(); // handle
             }
         }
