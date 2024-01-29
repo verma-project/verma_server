@@ -5,6 +5,7 @@ public enum RepairTypeEnum {
     SMALL_ELECTRICAL,
     CLOTHES,
     FURNITURE,
+    MECHANICAL,
     GARDEN_TOOL,
     TOY,
     BICYCLE,

@@ -10,11 +10,11 @@ public enum RepairEventEnum {
     /* Unable to repair item */
     UNABLE_REPAIR,
     /* Repair taken off-site by Repairer(s) for home repair */
-    OFFSITE_REPAIR,
+    OFF_SITE_REPAIR,
     /* Repair is delayed. */
     DELAYED,
     /* Item repaired and returned to guest. */
     REPAIRED,
     /* Item requires part(s) */
-    PENDING_PARTS,
+    REQUIRES_PARTS,
 }

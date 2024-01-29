@@ -9,5 +9,4 @@ public enum SkillsEnum {
     MECHANICAL,
     SOFTWARE,
     ALL_TRADES,
-
 }
