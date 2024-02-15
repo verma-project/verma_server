@@ -1,6 +1,8 @@
 package org.deraproject.apps.server.enums;
 
 public enum RepairEventEnum {
+    /* Repair registered */
+    REGISTERED,
     /* Repair awaiting triage before assignment */
     TRIAGE,
     /* Repair awaiting repairer(s) */
