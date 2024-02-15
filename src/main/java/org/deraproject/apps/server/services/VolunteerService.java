@@ -19,7 +19,7 @@ public class VolunteerService {
 
     private final List<VolunteerTypeEnum> repairVolunteerTypeList = List.of(VolunteerTypeEnum.REPAIRER);
     private final List<VolunteerTypeEnum> frontOfHouseVolunteerTypeList = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
-    private final List<VolunteerTypeEnum> frontOfHouseVolunteerTypeList = List.of(VolunteerTypeEnum.ADMINISTRATOR);
+    private final List<VolunteerTypeEnum> administratorVolunteerTypeList = List.of(VolunteerTypeEnum.ADMINISTRATOR);
 
     public Volunteer create(final Volunteer o) {
         return repository.saveAndFlush(o);
