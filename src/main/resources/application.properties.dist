@@ -1,5 +1,9 @@
-spring.datasource.url=jdbc:postgresql://postgresql_repair_cafe_backend:5432/${DB_NAME:repair_cafe_backend_db}
-spring.datasource.username=${DB_USER:repair_cafe_backend_user}
-spring.datasource.password=${DB_PASSWORD:password123}
+server.port=${API_PORT:8080}
+logging.level.org.atmosphere = warn
+
+spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
+server.servlet.session.tracking-modes=cookie
+
+spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.open-in-view=false
