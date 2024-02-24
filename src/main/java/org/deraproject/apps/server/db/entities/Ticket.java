@@ -37,7 +37,7 @@ public final class Ticket implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Visitor visitor;
 
-    @OneToMany(mappedBy = "repairs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Repair> repairs;
 
