@@ -26,7 +26,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Repair implements Serializable {
+public final class Repair implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -56,7 +56,6 @@ public class Repair implements Serializable {
     @NotEmpty
     @Convert(converter = StringListConverter.class)
     private String repairTypeCustom;
-
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "repairs")
     @OnDelete(action = OnDeleteAction.CASCADE)

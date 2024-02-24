@@ -1,29 +1,29 @@
 package org.deraproject.apps.server;
- 
+
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
- 
+
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
- 
+
 @Configuration
 public class ApplicationConfiguration {
- 
+
     @Bean
     public DataSource getDataSource() throws URISyntaxException {
-        DataSourceBuilder builder = DataSourceBuilder.create();
- 
+        DataSourceBuilder<?> builder = DataSourceBuilder.create();
+
         // Use the DATABASE_URL environment variable, if it exists
         String databaseURL = System.getenv("DATABASE_URL");
-        if (databaseURL != null) {
-            String jdbcURL = getSpringDataSourceURL(databaseURL);
-            builder.url(jdbcURL);
-        }
+        if (databaseURL != null) builder.url(getSpringDataSourceURL(databaseURL));
+
+        builder.url("jdbc:h2:mem:testdb");
+
         return builder.build();
     }
- 
+
     private String getSpringDataSourceURL(String databaseURL) throws URISyntaxException {
         URI uri = new URI(databaseURL);
         String username = "";
@@ -44,9 +44,9 @@ public class ApplicationConfiguration {
             scheme = "postgresql";
         }
         String jdbcURL = "jdbc:" + scheme + "://" + host + ":" + port + path;
-        if (!username.equals("")) {
+        if (!username.isEmpty()) {
             jdbcURL = jdbcURL + "?user=" + username;
-            if (!password.equals("")) {
+            if (!password.isEmpty()) {
                 jdbcURL = jdbcURL + "&password=" + password;
             }
         }
