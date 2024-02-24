@@ -16,19 +16,19 @@ public class ApplicationConfiguration {
         DataSourceBuilder<?> builder = DataSourceBuilder.create();
 
         // Use the DATABASE_URL environment variable, if it exists
-        String databaseURL = System.getenv("DATABASE_URL");
+        final String databaseURL = System.getenv("DATABASE_URL");
         if (databaseURL != null) builder.url(getSpringDataSourceURL(databaseURL));
 
-        builder.url("jdbc:h2:mem:testdb");
+        builder.url("jdbc:h2:mem:dera_db");
 
         return builder.build();
     }
 
-    private String getSpringDataSourceURL(String databaseURL) throws URISyntaxException {
-        URI uri = new URI(databaseURL);
+    private String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
+        final URI uri = new URI(databaseURL);
         String username = "";
         String password = "";
-        String userInfo = uri.getUserInfo();
+        final String userInfo = uri.getUserInfo();
         if (userInfo != null) {
             String[] components = userInfo.split(":");
             username = components[0];
