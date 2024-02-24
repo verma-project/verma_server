@@ -66,7 +66,7 @@ public final class Repair implements Serializable {
     private Set<RepairEvent> repairEvents;
 
     @ManyToOne
-    @JoinColumn(name = "ticket_id", insertable = false, updatable = false)
+    @JoinColumn(insertable = false, updatable = false)
     private Ticket ticket;
 
     private boolean isCustomRepairType() {
