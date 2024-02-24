@@ -17,9 +17,9 @@ public class VolunteerService {
     @Autowired
     private VolunteerRepository repository;
 
-    private final List<VolunteerTypeEnum> repairVolunteerTypeList = List.of(VolunteerTypeEnum.REPAIRER);
-    private final List<VolunteerTypeEnum> frontOfHouseVolunteerTypeList = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
-    private final List<VolunteerTypeEnum> administratorVolunteerTypeList = List.of(VolunteerTypeEnum.ADMINISTRATOR);
+    private final List<VolunteerTypeEnum> repairVolunteerType = List.of(VolunteerTypeEnum.REPAIRER);
+    private final List<VolunteerTypeEnum> frontOfHouseVolunteerType = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
+    private final List<VolunteerTypeEnum> administratorVolunteerType = List.of(VolunteerTypeEnum.ADMINISTRATOR);
 
     public Volunteer create(final Volunteer o) {
         return repository.saveAndFlush(o);
@@ -32,7 +32,7 @@ public class VolunteerService {
             .filter(Volunteer::isActive)
             .filter(obj -> skillsEnumList.stream()
                 .anyMatch(obj.getSkills()::contains))
-            .filter(obj -> repairVolunteerTypeList.stream()
+            .filter(obj -> repairVolunteerType.stream()
                 .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
@@ -42,7 +42,7 @@ public class VolunteerService {
             .stream()
             .filter(Objects::nonNull)
             .filter(Volunteer::isActive)
-            .filter(obj -> frontOfHouseVolunteerTypeList.stream()
+            .filter(obj -> frontOfHouseVolunteerType.stream()
                 .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
@@ -52,7 +52,7 @@ public class VolunteerService {
             .stream()
             .filter(Objects::nonNull)
             .filter(Volunteer::isActive)
-            .filter(obj -> repairVolunteerTypeList.stream()
+            .filter(obj -> repairVolunteerType.stream()
                 .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }
