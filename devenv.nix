@@ -3,9 +3,9 @@
 
   languages = {
     java = {
-        enable = true;
-        jdk.package = pkgs.jdk17;
-        maven.enable = true;
+      enable = true;
+      jdk.package = pkgs.jdk17;
+      maven.enable = true;
     };
   };
 
@@ -17,4 +17,10 @@
 
   devcontainer.enable = true;
   difftastic.enable = true;
+
+  pre-commit.hooks = {
+    commitizen.enable = true;
+    denofmt.enable = true;
+    actionlint.enable = true;
+  };
 }
