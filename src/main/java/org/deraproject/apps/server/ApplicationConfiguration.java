@@ -19,7 +19,7 @@ public class ApplicationConfiguration {
         final String databaseURL = System.getenv("DATABASE_URL");
         if (databaseURL != null) builder.url(getSpringDataSourceURL(databaseURL));
 
-        builder.url("jdbc:h2:mem:dera_db");
+        builder.url("jdbc:h2:mem:dera_server_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH");
 
         return builder.build();
     }
