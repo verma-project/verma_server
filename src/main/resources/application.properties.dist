@@ -1,9 +1,8 @@
-server.port=${API_PORT:8080}
-logging.level.org.atmosphere = warn
-
-spring.jpa.defer-datasource-initialization=true
-spring.sql.init.mode=always
-server.servlet.session.tracking-modes=cookie
-
-spring.jpa.generate-ddl=true
+spring.datasource.url=jdbc:${DERA_JDBC_URL:h2:mem:dera_api;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
+spring.h2.console.enabled=false
+h2.tcp.enabled=false
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.defer-datasource-initialization=false
+spring.sql.init.mode=always
+spring.jpa.generate-ddl=true
