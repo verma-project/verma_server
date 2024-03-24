@@ -47,10 +47,11 @@ public class ApplicationConfiguration {
                 password = components[1];
             }
         }
-        String host = uri.getHost();
-        int port = uri.getPort();
-        String path = uri.getPath();
+        final String host = uri.getHost();
+        final int port = uri.getPort();
+        final String path = uri.getPath();
         String scheme = uri.getScheme();
+
         if ("postgres".equals(scheme)) {
             scheme = "postgresql";
         }
@@ -61,6 +62,11 @@ public class ApplicationConfiguration {
                 jdbcURL = jdbcURL + "&password=" + password;
             }
         }
+        jdbcURL = jdbcURL + "&" + uri.getQuery();
+
+        System.out.println(databaseURL);
+        System.out.println(jdbcURL);
+
         return jdbcURL;
     }
 }
