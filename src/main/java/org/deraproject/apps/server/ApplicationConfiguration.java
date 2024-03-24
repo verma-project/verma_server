@@ -64,9 +64,6 @@ public class ApplicationConfiguration {
         }
         jdbcURL = jdbcURL + "&" + uri.getQuery();
 
-        System.out.println(databaseURL);
-        System.out.println(jdbcURL);
-
         return jdbcURL;
     }
 }
