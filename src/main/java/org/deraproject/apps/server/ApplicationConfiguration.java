@@ -1,5 +1,7 @@
 package org.deraproject.apps.server;
 
+import jakarta.validation.constraints.Null;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,20 +13,29 @@ import java.net.URISyntaxException;
 @Configuration
 public class ApplicationConfiguration {
 
+    @Value("${DATABASE_URL:#{null}}")
+    private String DATABASE_URL;
+
+    @Value("${spring.datasource.url:#{null}}")
+    private String springDatasourceURL;
+
     @Bean
     public DataSource getDataSource() throws URISyntaxException {
         DataSourceBuilder<?> builder = DataSourceBuilder.create();
 
         // Use the DATABASE_URL environment variable, if it exists
-        final String databaseURL = System.getenv("DATABASE_URL");
-        if (databaseURL != null) builder.url(getSpringDataSourceURL(databaseURL));
-
-        builder.url("jdbc:h2:mem:dera_server_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH");
-
-        return builder.build();
+        try {
+            if (DATABASE_URL != null || springDatasourceURL == null) {
+                return builder.url(getSpringDataSourceURL(DATABASE_URL)).build();
+            } else {
+                return builder.url(springDatasourceURL).build();
+            }
+        } catch (final NullPointerException ex) {
+                return builder.url("jdbc:h2:mem:dera_server_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH").build();
+        }
     }
 
-    private String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
+    private final String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
         final URI uri = new URI(databaseURL);
         String username = "";
         String password = "";
