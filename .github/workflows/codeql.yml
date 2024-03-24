@@ -35,7 +35,7 @@ jobs:
         cache: maven
 
     - name: Build project
-      run: ./mvnw -DskipTests package
+      run: ./mvnw clean compile package
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

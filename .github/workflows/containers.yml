@@ -1,4 +1,4 @@
-name: CI container image builder
+name: Container Image builder
 
 on:
   workflow_run:
