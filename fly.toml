@@ -3,16 +3,14 @@ primary_region = 'lhr'
 
 [build]
   builder = "paketobuildpacks/builder:tiny"
-  buildpacks = [
-    "paketo-buildpacks/graalvm",
-    "paketo-buildpacks/java-native-image"
-  ]
+  buildpacks = ["paketo-buildpacks/java-native-image"]
 
 [build.args]
   BP_NATIVE_IMAGE = "true"
   BP_JVM_VERSION = "17"
-  BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
+  BP_MAVEN_ACTIVE_PROFILES = "native"
   BP_OCI_SOURCE = "https://github.com/dera-project/dera_rest_api"
+  BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
 
 [http_service]
   internal_port = 8080
