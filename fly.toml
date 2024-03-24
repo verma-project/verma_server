@@ -1,0 +1,28 @@
+app = 'dera-rest-api'
+primary_region = 'lhr'
+
+[build]
+  builder = "paketobuildpacks/builder:tiny"
+  buildpacks = [
+    "paketo-buildpacks/graalvm",
+    "paketo-buildpacks/java-native-image"
+  ]
+
+[build.args]
+  BP_NATIVE_IMAGE = "true"
+  BP_JVM_VERSION = "17"
+  BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
+  BP_OCI_SOURCE = "https://github.com/dera-project/dera_rest_api"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
