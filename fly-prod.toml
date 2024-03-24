@@ -1,4 +1,4 @@
-app = 'dera-rest-api'
+app = 'dera-rest-api-prod'
 primary_region = 'lhr'
 
 [build]
@@ -8,7 +8,6 @@ primary_region = 'lhr'
   BP_NATIVE_IMAGE = "true"
   BP_JVM_VERSION = "17"
   BP_MAVEN_ACTIVE_PROFILES = "native"
-#  BP_MAVEN_BUILD_ARGUMENTS = "-Dmaven.test.skip=true --no-transfer-progress package -Pnative"
   BP_OCI_SOURCE = "https://github.com/dera-project/dera_rest_api"
   BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
 
