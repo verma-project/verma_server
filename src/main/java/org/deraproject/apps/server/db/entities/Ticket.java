@@ -2,7 +2,6 @@ package org.deraproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.v3.oas.annotations.Hidden;
 import org.deraproject.apps.server.enums.TicketTypeEnum;
 import org.deraproject.apps.server.utils.converters.TicketTypeConverter;
 import jakarta.persistence.*;
@@ -56,7 +55,6 @@ public final class Ticket implements Serializable {
 
     @PrePersist
     @JsonIgnore
-    @Hidden
     @Transient
     public void populateFields() {
         if (this.associatedItems == null) this.associatedItems = repairs.size();
