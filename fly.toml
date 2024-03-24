@@ -2,20 +2,20 @@ app = 'dera-rest-api'
 primary_region = 'lhr'
 
 [build]
-  builder = "paketobuildpacks/builder:tiny"
-  buildpacks = ["paketo-buildpacks/java-native-image"]
+  builder = "paketobuildpacks/builder-jammy-tiny"
 
 [build.args]
   BP_NATIVE_IMAGE = "true"
   BP_JVM_VERSION = "17"
   BP_MAVEN_ACTIVE_PROFILES = "native"
+#  BP_MAVEN_BUILD_ARGUMENTS = "-Dmaven.test.skip=true --no-transfer-progress package -Pnative"
   BP_OCI_SOURCE = "https://github.com/dera-project/dera_rest_api"
   BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = false
+  auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
