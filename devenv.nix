@@ -17,6 +17,7 @@
 
   devcontainer.enable = true;
   difftastic.enable = true;
+  dotenv.enable = true;
 
   pre-commit.hooks = {
     commitizen.enable = true;
