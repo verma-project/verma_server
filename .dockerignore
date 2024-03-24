@@ -1,7 +1,10 @@
-/target
-/docker-compose.yml
-/README.md
-/LICENSE
-/Dockerfile
+/.devcontainer.json
+/.devenv
+/.direnv
+/.git
 /.github
-/.devcontainer
+/.reuse
+/LICENSE
+/README.md
+/target
+/.pre-commit-config.yaml
