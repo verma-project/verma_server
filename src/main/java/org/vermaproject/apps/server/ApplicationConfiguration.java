@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 
 @Configuration
 public class ApplicationConfiguration {
-    @Value("${DATABASE_URL:#{null}}")
+    @Value("${environment.DATABASE_URL:#{null}}")
     private String DATABASE_URL;
 
     @Value("${spring.datasource.url:#{null}}")
