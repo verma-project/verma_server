@@ -14,7 +14,7 @@
   services.postgres = {
     enable = true;
     package = pkgs.postgresql;
-    initialDatabases = [{ name = "dera_db"; }];
+    initialDatabases = [{ name = "verma_db"; }];
   };
 
   devcontainer.enable = true;
@@ -24,11 +24,6 @@
   pre-commit.hooks = {
     actionlint.enable = true;
     commitizen.enable = true;
-    denofmt.enable = true;
     markdownlint.enable = true;
-    nixpkgs-fmt.enable = true;
-    shellcheck.enable = true;
-    shfmt.enable = true;
-    statix.enable = true;
   };
 }

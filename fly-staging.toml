@@ -1,4 +1,4 @@
-app = 'dera-rest-api-staging'
+app = 'verma-server-staging'
 primary_region = 'lhr'
 
 [build]
@@ -8,7 +8,7 @@ primary_region = 'lhr'
   BP_NATIVE_IMAGE = "true"
   BP_JVM_VERSION = "17"
   BP_MAVEN_ACTIVE_PROFILES = "native"
-  BP_OCI_SOURCE = "https://github.com/dera-project/dera_rest_api"
+  BP_OCI_SOURCE = "https://github.com/verma-project/verma_server"
   BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
 
 [http_service]

@@ -1,6 +1,4 @@
-spring.datasource.url=jdbc:${DERA_JDBC_URL:h2:mem:dera_api;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
-spring.h2.console.enabled=false
-h2.tcp.enabled=false
+spring.datasource.url=jdbc:${DERA_JDBC_URL:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.defer-datasource-initialization=false

@@ -1,19 +1,35 @@
-name: CI workflow
+---
+name: Meta Workflow
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: 'recursive'
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: ./mvnw clean compile package
+  tests:
+    uses: ./.github/workflows/tests.yml
+    secrets: inherit
+
+  codeql:
+    needs: [tests]
+    uses: ./.github/workflows/codeql.yml
+
+#  containers:
+#    needs: [codeql]
+#    uses: ./.github/workflows/containers.yml
+#    secrets: inherit
+
+  nix:
+    needs: [codeql]
+    uses: ./.github/workflows/nix.yml
+    secrets: inherit
+
+  deploy:
+    needs: [tests, codeql, nix]
+    uses: ./.github/workflows/deploy.yml
+    with:
+        is_push: ${{ github.event_name == 'push' }}
+        is_pr: ${{ github.event_name == 'pull_request' }}
+        is_push_to_main: ${{ github.ref_name == 'main' }}
+    secrets: inherit
