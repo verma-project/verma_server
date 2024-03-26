@@ -36,28 +36,35 @@ public class RepairService {
     private TicketEventRepository ticketEventRepository;
 
     public List<Repair> getRepairsByType(final RepairTypeEnum repairType) {
-        return repairRepository.findRepairsByRepairType(repairType)
+        return repairRepository.findAllRepairsByRepairType(repairType)
             .stream()
             .filter(Objects::nonNull)
             .collect(Collectors.toList());
     }
 
-    public void createAndAssociateEntities(final Set<Repair> newRepairEntities, final Ticket ticket) {
-        newRepairEntities.forEach(newRepair -> {
-            ticketEventRepository.save(createTicketEvent(ticket));
+    public Repair create(final Repair repair) {
+        // UUID PK somewhat guaranteed a unique Repair.
+        // TODO: Check ticket exists before creating repair?
+        return repairRepository.save(repair);
+    }
 
-            repairEventRepository.save(createRepairEvent(newRepair));
+    public void initTicketRepairEvents(final Set<Repair> newRepairEntities, final Ticket ticket) {
+        newRepairEntities.forEach(newRepair -> {
+            ticketEventRepository.save(createTicketEvent(ticket, TicketEventEnum.REGISTERED));
+            repairEventRepository.save(createRepairEvent(newRepair, RepairEventEnum.REGISTERED));
         });
     }
 
-    private TicketEvent createTicketEvent(final Ticket savedTicket) {
+    private TicketEvent createTicketEvent(final Ticket savedTicket, final TicketEventEnum evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid TicketEventEnum");
         TicketEvent newTicketEvent = new TicketEvent();
         newTicketEvent.setTicketEvent(TicketEventEnum.REGISTERED);
         newTicketEvent.setTicket(savedTicket);
         return newTicketEvent;
     }
 
-    private RepairEvent createRepairEvent(final Repair savedRepair) {
+    private RepairEvent createRepairEvent(final Repair savedRepair, final RepairEventEnum evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid RepairEventEnum");
         RepairEvent newRepairEvent = new RepairEvent();
         newRepairEvent.setRepairEvent(RepairEventEnum.REGISTERED);
         newRepairEvent.setRepair(savedRepair);
