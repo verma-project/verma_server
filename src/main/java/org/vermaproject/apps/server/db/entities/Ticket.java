@@ -24,7 +24,7 @@ import java.util.UUID;
 public final class Ticket implements Serializable {
     @Id
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
