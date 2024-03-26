@@ -14,6 +14,7 @@
   services.postgres = {
     enable = true;
     package = pkgs.postgresql;
+    listen_addresses = "127.0.0.1";
     initialDatabases = [{ name = "verma_db"; }];
   };
 
