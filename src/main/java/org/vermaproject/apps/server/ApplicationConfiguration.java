@@ -1,22 +1,26 @@
 package org.vermaproject.apps.server;
 
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Slf4j
 @Configuration
 public class ApplicationConfiguration {
-    @Value("${environment.DATABASE_URL:#{null}}")
+    @Value("${DATABASE_URL:#{null}}")
     private String DATABASE_URL;
 
     @Value("${spring.datasource.url:#{null}}")
-    private String DATASOURCE_URL_PROP;
+    private String SPRING_DATASOURCE_URL;
+
+    private final String DEFAULT_DB_URL = "jdbc:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH";
 
     @Bean
     public DataSource getDataSource() throws URISyntaxException {
@@ -24,15 +28,22 @@ public class ApplicationConfiguration {
 
         // TODO: Document the following code snippet.
         try {
-            if (DATABASE_URL != null && DATASOURCE_URL_PROP == null) {
+            // First try `DATABASE_URL` and then `SPRING_DATASOURCE_URL.
+            if (DATABASE_URL != null) {
+                log.info("Using `$DATABASE_URL` for DB connection: {}", DATABASE_URL);
                 return builder.url(getSpringDataSourceURL(DATABASE_URL)).build();
-            } else if (DATABASE_URL == null && DATASOURCE_URL_PROP != null) {
-                return builder.url(DATASOURCE_URL_PROP).build();
+                // Now try `SPRING_DATASOURCE_URL`.
+            } else if (SPRING_DATASOURCE_URL != null) {
+                log.info("Using `$SPRING_DATASOURCE_URL` for DB connection: {}", SPRING_DATASOURCE_URL);
+                return builder.url(SPRING_DATASOURCE_URL).build();
+                // Finally, fallback to H2 in-mem DB.
             } else {
-                return builder.url("jdbc:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH").build();
+                log.info("Using default H2 in-mem DB connection: {}", DEFAULT_DB_URL);
+                return builder.url(DEFAULT_DB_URL).build();
             }
-        } catch (final NullPointerException e) {
-                return builder.url("jdbc:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH").build();
+        } catch (final NullPointerException ex) {
+            // Fall back to H2 in-mem DB.
+            return builder.url(DEFAULT_DB_URL).build();
         }
     }
 
