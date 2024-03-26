@@ -48,7 +48,7 @@ public final class Volunteer implements Serializable {
     @NotEmpty
     @Email
     @Convert(converter = StringTrimConverter.class)
-    private String emailAddress;
+    private String emailAddr;
 
     @Convert(converter = StringTrimConverter.class)
     private String initials;
