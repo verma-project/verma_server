@@ -42,7 +42,7 @@ public class ApplicationConfiguration {
         }
     }
 
-    private String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
+    private final String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
         final URI uri = new URI(databaseURL);
         String username = "";
         String password = "";
