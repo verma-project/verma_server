@@ -2,16 +2,16 @@ package org.vermaproject.apps.server.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.vermaproject.apps.server.db.entities.Repair;
-import org.vermaproject.apps.server.db.entities.RepairEvent;
+import org.vermaproject.apps.server.db.entities.RepairStateEvent;
 import org.vermaproject.apps.server.db.entities.Ticket;
-import org.vermaproject.apps.server.db.entities.TicketEvent;
-import org.vermaproject.apps.server.db.repositories.RepairEventRepository;
+import org.vermaproject.apps.server.db.entities.TicketStateEvent;
+import org.vermaproject.apps.server.db.repositories.RepairStateEventRepository;
 import org.vermaproject.apps.server.db.repositories.RepairRepository;
-import org.vermaproject.apps.server.db.repositories.TicketEventRepository;
+import org.vermaproject.apps.server.db.repositories.TicketStateEventRepository;
 import org.vermaproject.apps.server.db.repositories.TicketRepository;
-import org.vermaproject.apps.server.enums.RepairEventEnum;
+import org.vermaproject.apps.server.enums.RepairStateEventEnum;
 import org.vermaproject.apps.server.enums.RepairTypeEnum;
-import org.vermaproject.apps.server.enums.TicketEventEnum;
+import org.vermaproject.apps.server.enums.TicketStateEventEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +27,13 @@ public class RepairService {
     private RepairRepository repairRepository;
 
     @Autowired
-    private RepairEventRepository repairEventRepository;
+    private RepairStateEventRepository repairStateEventRepository;
 
     @Autowired
     private TicketRepository ticketRepository;
 
     @Autowired
-    private TicketEventRepository ticketEventRepository;
+    private TicketStateEventRepository ticketStateEventRepository;
 
     public List<Repair> getRepairsByType(final RepairTypeEnum repairType) {
         return repairRepository.findAllRepairsByRepairType(repairType)
@@ -50,24 +50,24 @@ public class RepairService {
 
     public void initTicketRepairEvents(final Set<Repair> newRepairEntities, final Ticket ticket) {
         newRepairEntities.forEach(newRepair -> {
-            ticketEventRepository.save(createTicketEvent(ticket, TicketEventEnum.REGISTERED));
-            repairEventRepository.save(createRepairEvent(newRepair, RepairEventEnum.REGISTERED));
+            ticketStateEventRepository.save(createTicketEvent(ticket, TicketStateEventEnum.REGISTERED));
+            repairStateEventRepository.save(createRepairEvent(newRepair, RepairStateEventEnum.REGISTERED));
         });
     }
 
-    private TicketEvent createTicketEvent(final Ticket savedTicket, final TicketEventEnum evt) {
-        if (evt == null) throw new IllegalArgumentException("Invalid TicketEventEnum");
-        TicketEvent newTicketEvent = new TicketEvent();
-        newTicketEvent.setTicketEvent(TicketEventEnum.REGISTERED);
-        newTicketEvent.setTicket(savedTicket);
-        return newTicketEvent;
+    private TicketStateEvent createTicketEvent(final Ticket savedTicket, final TicketStateEventEnum evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid TicketStateEventEnum");
+        TicketStateEvent newTicketStateEvent = new TicketStateEvent();
+        newTicketStateEvent.setTicketEvent(TicketStateEventEnum.REGISTERED);
+        newTicketStateEvent.setTicket(savedTicket);
+        return newTicketStateEvent;
     }
 
-    private RepairEvent createRepairEvent(final Repair savedRepair, final RepairEventEnum evt) {
-        if (evt == null) throw new IllegalArgumentException("Invalid RepairEventEnum");
-        RepairEvent newRepairEvent = new RepairEvent();
-        newRepairEvent.setRepairEvent(RepairEventEnum.REGISTERED);
-        newRepairEvent.setRepair(savedRepair);
-        return newRepairEvent;
+    private RepairStateEvent createRepairEvent(final Repair savedRepair, final RepairStateEventEnum evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid RepairStateEventEnum");
+        RepairStateEvent newRepairStateEvent = new RepairStateEvent();
+        newRepairStateEvent.setRepairEvent(RepairStateEventEnum.REGISTERED);
+        newRepairStateEvent.setRepair(savedRepair);
+        return newRepairStateEvent;
     }
 }

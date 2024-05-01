@@ -48,7 +48,7 @@ public final class Ticket implements Serializable {
 
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<TicketEvent> ticketEvents;
+    private Set<TicketStateEvent> ticketStateEvents;
 
     @Column(nullable = false)
     private Integer associatedItems;

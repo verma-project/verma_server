@@ -50,7 +50,7 @@ public final class Cafe implements Serializable {
 
     @Column(nullable = false)
     @OneToMany(mappedBy = "cafe")
-    private Set<CafeEvent> cafeEvents;
+    private Set<CafeStateEvent> cafeStateEvents;
 
     @OneToMany(mappedBy = "cafe")
     private Set<Ticket> tickets;

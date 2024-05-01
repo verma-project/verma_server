@@ -63,7 +63,7 @@ public final class Repair implements Serializable {
 
     @OneToMany(mappedBy = "repair", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<RepairEvent> repairEvents;
+    private Set<RepairStateEvent> repairStateEvents;
 
     @ManyToOne
     @JoinColumn(insertable = false, updatable = false)

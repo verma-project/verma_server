@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum CafeEventEnum {
+public enum CafeStateEventEnum {
     SCHEDULED,
     CANCELLED,
     IN_PROGRESS,

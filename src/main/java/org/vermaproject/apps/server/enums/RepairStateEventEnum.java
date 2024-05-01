@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum RepairEventEnum {
+public enum RepairStateEventEnum {
     /* Repair registered */
     REGISTERED,
     /* Repair awaiting triage before assignment */

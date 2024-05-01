@@ -1,8 +1,8 @@
 package org.vermaproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.vermaproject.apps.server.enums.TicketEventEnum;
-import org.vermaproject.apps.server.utils.converters.TicketEventConverter;
+import org.vermaproject.apps.server.enums.CafeStateEventEnum;
+import org.vermaproject.apps.server.utils.converters.CafeStateEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -12,27 +12,28 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Table(name = "repair_events")
-@Entity(name = "TicketEvent")
+@Table(name = "cafe_events")
+@Entity(name = "CafeEvent")
 @ToString
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public final class TicketEvent implements Serializable {
+public final class CafeStateEvent implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Convert(converter = TicketEventConverter.class)
-    private TicketEventEnum ticketEvent;
+    @Column(nullable = false)
+    @Convert(converter = CafeStateEventConverter.class)
+    private CafeStateEventEnum cafeEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Ticket ticket;
+    private Cafe cafe;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
