@@ -1,12 +1,14 @@
 package org.vermaproject.apps.server.ext.tito;
 
-import org.vermaproject.apps.server.utils.bases.BaseRestApiClient;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.vermaproject.apps.server.utils.bases.BaseRestApiClient;
 
 public final class TitoApiClientFactory {
     public TitoApiClient getClient(final TitoApiClientType clientType, final String apiToken) throws IllegalArgumentException {
-        if (clientType == null) throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
-        if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for Ti.to supplied. Pass a valid token.");
+        if (clientType == null)
+            throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
+        if (apiToken == null || apiToken.isEmpty())
+            throw new IllegalArgumentException("Empty/null API token for Ti.to supplied. Pass a valid token.");
 
         return switch (clientType) {
             case ADMIN -> new TitoAdminApiClient(apiToken);
@@ -37,7 +39,8 @@ public final class TitoApiClientFactory {
 
         public TitoCheckinApiClient(final String apiToken) {
             try {
-                if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for the Ti.to Check-in API supplied");
+                if (apiToken == null || apiToken.isEmpty())
+                    throw new IllegalArgumentException("Empty/null API token for the Ti.to Check-in API supplied");
                 configureCredentials(apiToken);
                 configureBaseUrl(TITO_CHECKIN_BASE_URL);
             } catch (final IllegalArgumentException e) {

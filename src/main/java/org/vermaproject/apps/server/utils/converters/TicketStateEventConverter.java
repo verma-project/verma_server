@@ -1,15 +1,16 @@
 package org.vermaproject.apps.server.utils.converters;
 
-import org.vermaproject.apps.server.enums.TicketStateEventEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.vermaproject.apps.server.enums.TicketStateEventEnum;
 
 @Converter
 public final class TicketStateEventConverter implements AttributeConverter<TicketStateEventEnum, String> {
 
     @Override
     public String convertToDatabaseColumn(TicketStateEventEnum ticketStateEventEnum) {
-        if (ticketStateEventEnum == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
+        if (ticketStateEventEnum == null)
+            throw new IllegalArgumentException("DB error. Enum variant is not populated.");
 
         return ticketStateEventEnum.toString();
     }

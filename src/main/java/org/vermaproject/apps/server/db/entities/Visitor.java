@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
 import java.util.Set;

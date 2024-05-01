@@ -1,12 +1,12 @@
 package org.vermaproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.vermaproject.apps.server.enums.CafeStateEventEnum;
-import org.vermaproject.apps.server.utils.converters.CafeStateEventConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.vermaproject.apps.server.enums.CafeStateEventEnum;
+import org.vermaproject.apps.server.utils.converters.CafeStateEventConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;

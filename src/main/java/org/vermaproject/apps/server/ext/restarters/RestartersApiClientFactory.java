@@ -1,12 +1,14 @@
 package org.vermaproject.apps.server.ext.restarters;
 
-import org.vermaproject.apps.server.utils.bases.BaseRestApiClient;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.vermaproject.apps.server.utils.bases.BaseRestApiClient;
 
 public final class RestartersApiClientFactory {
     public RestartersApiClient getClient(final RestartersApiClientType clientType, final String apiToken) {
-        if (clientType == null) throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
-        if (apiToken == null || apiToken.isEmpty()) throw new IllegalArgumentException("Empty/null API token for Restarters supplied. Pass a valid token.");
+        if (clientType == null)
+            throw new IllegalArgumentException("Client type variant is null. Pass a valid variant!");
+        if (apiToken == null || apiToken.isEmpty())
+            throw new IllegalArgumentException("Empty/null API token for Restarters supplied. Pass a valid token.");
 
         return switch (clientType) {
             case FIXOMETER -> new RestartersFixometerApiClient(apiToken);
@@ -23,7 +25,7 @@ public final class RestartersApiClientFactory {
         public RestartersFixometerApiClient(final String apiToken) {
             try {
                 configureCredentials(apiToken);
-                configureBaseUrl(RESTARTERS_FIXOMETER_API_BASE_URL);;
+                configureBaseUrl(RESTARTERS_FIXOMETER_API_BASE_URL);
             } catch (final IllegalArgumentException e) {
                 e.printStackTrace(); // handle
             }

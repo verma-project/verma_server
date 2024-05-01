@@ -4,15 +4,15 @@ package org.vermaproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.vermaproject.apps.server.enums.SkillsEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
-import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.vermaproject.apps.server.enums.SkillsEnum;
+import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
+import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -52,6 +52,19 @@ public final class Volunteer implements Serializable {
 
     @Convert(converter = StringTrimConverter.class)
     private String initials;
+    @Column(nullable = false)
+    private boolean active;
+    @ElementCollection(targetClass = SkillsEnum.class)
+    @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
+    @Enumerated(EnumType.STRING)
+    private List<SkillsEnum> skills;
+    @ElementCollection(targetClass = VolunteerTypeEnum.class)
+    @JoinTable(name = "Volunteer_Type", joinColumns = @JoinColumn(name = "volunteer_id"))
+    @Enumerated(EnumType.STRING)
+    private List<VolunteerTypeEnum> volunteerType;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Repair> repairs;
 
     @PrePersist
     @JsonIgnore
@@ -63,24 +76,7 @@ public final class Volunteer implements Serializable {
             this.lastName.charAt(0));
     }
 
-    @Column(nullable = false)
-    private boolean active;
-
     public boolean isNotActive() {
         return !isActive();
     }
-
-    @ElementCollection(targetClass = SkillsEnum.class)
-    @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
-    @Enumerated(EnumType.STRING)
-    private List<SkillsEnum> skills;
-
-    @ElementCollection(targetClass = VolunteerTypeEnum.class)
-    @JoinTable(name = "Volunteer_Type", joinColumns = @JoinColumn(name = "volunteer_id"))
-    @Enumerated(EnumType.STRING)
-    private List<VolunteerTypeEnum> volunteerType;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Repair> repairs;
 }

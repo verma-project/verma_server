@@ -1,8 +1,8 @@
 package org.vermaproject.apps.server.utils.converters;
 
-import org.vermaproject.apps.server.enums.CafeStateEventEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.vermaproject.apps.server.enums.CafeStateEventEnum;
 
 @Converter
 public final class CafeStateEventConverter implements AttributeConverter<CafeStateEventEnum, String> {

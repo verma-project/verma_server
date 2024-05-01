@@ -1,8 +1,8 @@
 package org.vermaproject.apps.server.utils.converters;
 
-import org.vermaproject.apps.server.enums.RepairStateEventEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.vermaproject.apps.server.enums.RepairStateEventEnum;
 
 @Converter
 public final class RepairStateEventConverter implements AttributeConverter<RepairStateEventEnum, String> {

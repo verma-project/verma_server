@@ -1,12 +1,12 @@
 package org.vermaproject.apps.server.services;
 
 import lombok.extern.slf4j.Slf4j;
-import org.vermaproject.apps.server.db.repositories.VolunteerRepository;
-import org.vermaproject.apps.server.enums.SkillsEnum;
-import org.vermaproject.apps.server.db.entities.Volunteer;
-import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.vermaproject.apps.server.db.entities.Volunteer;
+import org.vermaproject.apps.server.db.repositories.VolunteerRepository;
+import org.vermaproject.apps.server.enums.SkillsEnum;
+import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,12 +14,11 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class VolunteerService {
-    @Autowired
-    private VolunteerRepository repository;
-
     private final List<VolunteerTypeEnum> repairVolunteerType = List.of(VolunteerTypeEnum.REPAIRER);
     private final List<VolunteerTypeEnum> frontOfHouseVolunteerType = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
     private final List<VolunteerTypeEnum> administratorVolunteerType = List.of(VolunteerTypeEnum.ADMINISTRATOR);
+    @Autowired
+    private VolunteerRepository repository;
 
     public Volunteer create(final Volunteer o) {
         return repository.saveAndFlush(o);

@@ -1,15 +1,15 @@
 package org.vermaproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.vermaproject.apps.server.enums.RepairTypeEnum;
-import org.vermaproject.apps.server.utils.converters.RepairTypeConverter;
-import org.vermaproject.apps.server.utils.converters.StringListConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.vermaproject.apps.server.enums.RepairTypeEnum;
+import org.vermaproject.apps.server.utils.converters.RepairTypeConverter;
+import org.vermaproject.apps.server.utils.converters.StringListConverter;
+import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
 import java.util.List;

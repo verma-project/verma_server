@@ -2,12 +2,12 @@ package org.vermaproject.apps.server.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.vermaproject.apps.server.enums.TicketTypeEnum;
-import org.vermaproject.apps.server.utils.converters.TicketTypeConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.vermaproject.apps.server.enums.TicketTypeEnum;
+import org.vermaproject.apps.server.utils.converters.TicketTypeConverter;
 
 import java.io.Serializable;
 import java.util.Set;

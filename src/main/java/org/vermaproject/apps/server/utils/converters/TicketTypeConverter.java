@@ -1,8 +1,8 @@
 package org.vermaproject.apps.server.utils.converters;
 
-import org.vermaproject.apps.server.enums.TicketTypeEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.vermaproject.apps.server.enums.TicketTypeEnum;
 
 @Converter
 public class TicketTypeConverter implements AttributeConverter<TicketTypeEnum, String> {

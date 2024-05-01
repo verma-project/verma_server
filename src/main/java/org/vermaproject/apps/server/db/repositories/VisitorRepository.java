@@ -1,8 +1,8 @@
 package org.vermaproject.apps.server.db.repositories;
 
-import org.vermaproject.apps.server.db.entities.Visitor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.vermaproject.apps.server.db.entities.Visitor;
 
 import java.util.Optional;
 import java.util.UUID;

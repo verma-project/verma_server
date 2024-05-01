@@ -1,19 +1,19 @@
 package org.vermaproject.apps.server.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.vermaproject.apps.server.db.entities.Repair;
 import org.vermaproject.apps.server.db.entities.RepairStateEvent;
 import org.vermaproject.apps.server.db.entities.Ticket;
 import org.vermaproject.apps.server.db.entities.TicketStateEvent;
-import org.vermaproject.apps.server.db.repositories.RepairStateEventRepository;
 import org.vermaproject.apps.server.db.repositories.RepairRepository;
-import org.vermaproject.apps.server.db.repositories.TicketStateEventRepository;
+import org.vermaproject.apps.server.db.repositories.RepairStateEventRepository;
 import org.vermaproject.apps.server.db.repositories.TicketRepository;
+import org.vermaproject.apps.server.db.repositories.TicketStateEventRepository;
 import org.vermaproject.apps.server.enums.RepairStateEventEnum;
 import org.vermaproject.apps.server.enums.RepairTypeEnum;
 import org.vermaproject.apps.server.enums.TicketStateEventEnum;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;

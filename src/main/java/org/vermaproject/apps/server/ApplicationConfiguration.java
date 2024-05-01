@@ -1,11 +1,10 @@
 package org.vermaproject.apps.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.net.URI;
@@ -14,13 +13,11 @@ import java.net.URISyntaxException;
 @Slf4j
 @Configuration
 public class ApplicationConfiguration {
+    private final String DEFAULT_DB_URL = "jdbc:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH";
     @Value("${DATABASE_URL:#{null}}")
     private String DATABASE_URL;
-
     @Value("${spring.datasource.url:#{null}}")
     private String SPRING_DATASOURCE_URL;
-
-    private final String DEFAULT_DB_URL = "jdbc:h2:mem:verma_server;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH";
 
     @Bean
     public DataSource getDataSource() throws URISyntaxException {
@@ -31,7 +28,7 @@ public class ApplicationConfiguration {
         if (DATABASE_URL != null) {
             log.info("Using `$DATABASE_URL` for DB connection: {}", DATABASE_URL);
             return builder.url(getSpringDataSourceURL(DATABASE_URL)).build();
-             // Now try `SPRING_DATASOURCE_URL`.
+            // Now try `SPRING_DATASOURCE_URL`.
         } else if (SPRING_DATASOURCE_URL != null) {
             log.info("Using `$SPRING_DATASOURCE_URL` for DB connection: {}", SPRING_DATASOURCE_URL);
             return builder.url(SPRING_DATASOURCE_URL).build();
