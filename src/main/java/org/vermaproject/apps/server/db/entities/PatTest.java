@@ -27,17 +27,14 @@ public class PatTest extends BaseEntity implements Serializable {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(nullable = false, unique = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NonNull
     @NotEmpty
     private Repair repair;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private PatTestStateEvent patTestStateEvent;
 
-    @Column(nullable = false)
     @NonNull
     @NotEmpty
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
