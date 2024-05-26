@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.vermaproject.apps.server.enums.PatTestResultEnum;
 import org.vermaproject.apps.server.enums.PatTestStateEventEnum;
 import org.vermaproject.apps.server.utils.converters.PatTestStateEventConverter;
+import org.vermaproject.apps.server.utils.converters.PatTestResultEnumConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -40,6 +41,7 @@ public final class PatTestStateEvent extends BaseEntity implements Serializable 
 
     @Column(nullable = false)
     @NotEmpty
+    @Convert(converter = PatTestResultEnumConverter.class)
     private PatTestResultEnum patTestResult;
 
     @Column(nullable = false)
