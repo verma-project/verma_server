@@ -15,8 +15,8 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "repair_events")
-@Entity(name = "RepairEvent")
+@Table(name = "pat_test_state_events")
+@Entity(name = "PatTestStateEvent")
 @ToString
 @Builder
 @Data
