@@ -16,6 +16,7 @@ import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -52,7 +53,7 @@ public final class Volunteer extends BaseEntity implements Serializable {
     private String emailAddr;
 
     @Convert(converter = StringTrimConverter.class)
-    private String initials;
+    private String shortCode;
     @Column(nullable = false)
     private boolean active;
     @ElementCollection(targetClass = SkillsEnum.class)
@@ -69,12 +70,15 @@ public final class Volunteer extends BaseEntity implements Serializable {
 
     @PrePersist
     @JsonIgnore
-    private void genInitials() {
-        if (initials != null) return;
+    private void genShortcode() {
+        if (shortCode != null)
+            return;
+        Random rnd = new Random(); // Generate random integer for short code.
 
-        this.initials = String.format("%s%s",
+        this.shortCode = String.format("%s%s-%d",
             this.firstName.charAt(0),
-            this.lastName.charAt(0));
+            this.lastName.charAt(0),
+            rnd.nextInt(1));
     }
 
     public boolean isNotActive() {
