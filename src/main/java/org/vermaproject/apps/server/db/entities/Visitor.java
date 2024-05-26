@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "visitors")
 @Entity(name = "Visitor")
 @ToString
@@ -21,7 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public final class Visitor implements Serializable {
+public final class Visitor extends BaseEntity implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

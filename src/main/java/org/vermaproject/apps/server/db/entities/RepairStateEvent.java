@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "repair_events")
 @Entity(name = "RepairEvent")
 @ToString
@@ -20,7 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public final class RepairStateEvent implements Serializable {
+public final class RepairStateEvent extends BaseEntity implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
