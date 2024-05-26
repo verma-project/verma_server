@@ -55,7 +55,7 @@ public class VisitorService {
 
     private void modifyBanned(final UUID id, final boolean banState) throws NoSuchElementException {
         if (id == null) throw new IllegalArgumentException("No ID provided.");
-        Visitor o = null;
+        Visitor o;
 
         try {
             o = repository.findById(id)
