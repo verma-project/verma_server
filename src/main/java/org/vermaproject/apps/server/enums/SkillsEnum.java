@@ -1,12 +1,18 @@
 package org.vermaproject.apps.server.enums;
 
 public enum SkillsEnum {
-    ELECTRICAL,
+    COMPUTER,
+    SMALL_ELECTRICAL,
+    CLOTHES,
+    FURNITURE,
+    MECHANICAL,
+    GARDEN_TOOL,
+    TOY,
+    BICYCLE,
+    JEWELLERY,
+    OTHER,
     MUSICAL,
     TEXTILES,
-    FURNITURE,
     GARDEN,
-    MECHANICAL,
-    SOFTWARE,
     ALL_TRADES,
 }
