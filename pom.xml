@@ -142,13 +142,13 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
+            <version>5.11.0-M2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
+            <version>5.11.0-M2</version>
             <scope>test</scope>
         </dependency>
 
@@ -156,12 +156,12 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
+            <version>2.1.0-alpha1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.13</version>
+            <version>2.1.0-alpha1</version>
         </dependency>
 
         <!-- OpenAPI -->
