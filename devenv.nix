@@ -5,7 +5,10 @@
     java = {
       enable = true;
       jdk.package = pkgs.jdk17;
-      maven.enable = true;
+      maven = {
+        enable = true;
+        package = pkgs.maven;
+      };
     };
     shell.enable = true;
     nix.enable = true;
