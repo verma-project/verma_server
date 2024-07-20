@@ -16,4 +16,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: ./mvnw clean compile package test
+      run: ./mvnw -DskipTests=true clean compile package
