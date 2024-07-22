@@ -1,15 +1,20 @@
-app = 'verma-server-staging'
+# fly.toml app configuration file generated for verma-staging-server on 2024-07-22T19:16:42+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'verma-staging-server'
 primary_region = 'lhr'
 
 [build]
-  builder = "paketobuildpacks/builder-jammy-tiny"
+  builder = 'paketobuildpacks/builder-jammy-tiny'
 
-[build.args]
-  BP_NATIVE_IMAGE = "true"
-  BP_JVM_VERSION = "17"
-  BP_MAVEN_ACTIVE_PROFILES = "native"
-  BP_OCI_SOURCE = "https://github.com/verma-project/verma_server"
-  BP_SPRING_CLOUD_BINDINGS_DISABLED = "true"
+  [build.args]
+    BP_JVM_VERSION = '17'
+    BP_MAVEN_ACTIVE_PROFILES = 'native'
+    BP_NATIVE_IMAGE = 'true'
+    BP_OCI_SOURCE = 'https://github.com/verma-project/verma_server'
+    BP_SPRING_CLOUD_BINDINGS_DISABLED = 'true'
 
 [http_service]
   internal_port = 8080
