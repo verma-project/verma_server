@@ -1,5 +1,5 @@
 ---
-name: CI - Nix tests
+name: "CI - Nix tests"
 
 on:
   workflow_call:

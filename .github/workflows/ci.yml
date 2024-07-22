@@ -1,5 +1,5 @@
 ---
-name: Meta Workflow
+name: "Meta Workflow"
 
 on:
   push:
@@ -14,11 +14,6 @@ jobs:
   codeql:
     needs: [tests]
     uses: ./.github/workflows/codeql.yml
-
-#  containers:
-#    needs: [codeql]
-#    uses: ./.github/workflows/containers.yml
-#    secrets: inherit
 
   nix:
     needs: [codeql]
