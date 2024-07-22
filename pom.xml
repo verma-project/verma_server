@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.1</version>
+        <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.vermaproject.apps.server</groupId>
@@ -64,7 +64,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
-            <version>6.1.10</version>
+            <version>6.1.11</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -120,22 +120,22 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.17.1</version>
+            <version>2.17.2</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.17.1</version>
+            <version>2.17.2</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.17.1</version>
+            <version>2.17.2</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.17.1</version>
+            <version>2.17.2</version>
         </dependency>
 
         <!-- TDD/testing libraries -->
@@ -174,7 +174,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf</artifactId>
-            <version>9.8.0</version>
+            <version>9.9.0</version>
         </dependency>
     </dependencies>
 
