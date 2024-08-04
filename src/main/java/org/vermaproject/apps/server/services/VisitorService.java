@@ -53,7 +53,7 @@ public class VisitorService {
         modifyBanned(id, false);
     }
 
-    private void modifyBanned(final UUID id, final boolean banState) throws NoSuchElementException {
+    private void modifyBanned(final UUID id, final boolean banState) throws NoSuchElementException, IllegalArgumentException {
         if (id == null) throw new IllegalArgumentException("No ID provided.");
         Visitor o;
 

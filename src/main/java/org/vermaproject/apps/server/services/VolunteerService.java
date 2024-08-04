@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vermaproject.apps.server.db.entities.Volunteer;
 import org.vermaproject.apps.server.db.repositories.VolunteerRepository;
-import org.vermaproject.apps.server.enums.SkillsEnum;
-import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
+import org.vermaproject.apps.server.enums.SkillSet;
+import org.vermaproject.apps.server.enums.VolunteerType;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class VolunteerService {
-    private final List<VolunteerTypeEnum> repairVolunteerType = List.of(VolunteerTypeEnum.REPAIRER);
-    private final List<VolunteerTypeEnum> frontOfHouseVolunteerType = List.of(VolunteerTypeEnum.FRONT_OF_HOUSE);
-    private final List<VolunteerTypeEnum> administratorVolunteerType = List.of(VolunteerTypeEnum.ADMINISTRATOR);
+    private final List<VolunteerType> repairVolunteerType = List.of(VolunteerType.REPAIRER);
+    private final List<VolunteerType> frontOfHouseVolunteerType = List.of(VolunteerType.FRONT_OF_HOUSE);
+    private final List<VolunteerType> administratorVolunteerType = List.of(VolunteerType.ADMINISTRATOR);
+
     @Autowired
     private VolunteerRepository repository;
 
@@ -24,12 +25,12 @@ public class VolunteerService {
         return repository.saveAndFlush(o);
     }
 
-    public Collection<Volunteer> findAllRepairersBySkills(final List<SkillsEnum> skillsEnumList) {
+    public Collection<Volunteer> findAllRepairersBySkills(final List<SkillSet> skillSetList) {
         return repository.findAll()
             .stream()
             .filter(Objects::nonNull)
             .filter(Volunteer::isActive)
-            .filter(obj -> skillsEnumList.stream()
+            .filter(obj -> skillSetList.stream()
                 .anyMatch(obj.getSkills()::contains))
             .filter(obj -> repairVolunteerType.stream()
                 .anyMatch(obj.getVolunteerType()::contains))
@@ -52,6 +53,16 @@ public class VolunteerService {
             .filter(Objects::nonNull)
             .filter(Volunteer::isActive)
             .filter(obj -> repairVolunteerType.stream()
+                .anyMatch(obj.getVolunteerType()::contains))
+            .collect(Collectors.toList());
+    }
+
+    public Collection<Volunteer> findAllAdministrators() {
+        return repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(Volunteer::isActive)
+            .filter(obj -> administratorVolunteerType.stream()
                 .anyMatch(obj.getVolunteerType()::contains))
             .collect(Collectors.toList());
     }

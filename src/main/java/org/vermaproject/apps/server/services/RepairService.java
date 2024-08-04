@@ -11,9 +11,9 @@ import org.vermaproject.apps.server.db.repositories.RepairRepository;
 import org.vermaproject.apps.server.db.repositories.RepairStateEventRepository;
 import org.vermaproject.apps.server.db.repositories.TicketRepository;
 import org.vermaproject.apps.server.db.repositories.TicketStateEventRepository;
-import org.vermaproject.apps.server.enums.RepairStateEventEnum;
-import org.vermaproject.apps.server.enums.RepairTypeEnum;
-import org.vermaproject.apps.server.enums.TicketStateEventEnum;
+import org.vermaproject.apps.server.enums.RepairState;
+import org.vermaproject.apps.server.enums.RepairType;
+import org.vermaproject.apps.server.enums.TicketState;
 
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +35,7 @@ public class RepairService {
     @Autowired
     private TicketStateEventRepository ticketStateEventRepository;
 
-    public List<Repair> getRepairsByType(final RepairTypeEnum repairType) {
+    public List<Repair> getRepairsByType(final RepairType repairType) {
         return repairRepository.findAllRepairsByRepairType(repairType)
             .stream()
             .filter(Objects::nonNull)
@@ -50,23 +50,23 @@ public class RepairService {
 
     public void initTicketRepairEvents(final Set<Repair> newRepairEntities, final Ticket ticket) {
         newRepairEntities.forEach(newRepair -> {
-            ticketStateEventRepository.save(createTicketEvent(ticket, TicketStateEventEnum.REGISTERED));
-            repairStateEventRepository.save(createRepairEvent(newRepair, RepairStateEventEnum.REGISTERED));
+            ticketStateEventRepository.save(createTicketEvent(ticket, TicketState.REGISTERED));
+            repairStateEventRepository.save(createRepairEvent(newRepair, RepairState.REGISTERED));
         });
     }
 
-    private TicketStateEvent createTicketEvent(final Ticket savedTicket, final TicketStateEventEnum evt) {
-        if (evt == null) throw new IllegalArgumentException("Invalid TicketStateEventEnum");
+    private TicketStateEvent createTicketEvent(final Ticket savedTicket, final TicketState evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid TicketState");
         TicketStateEvent newTicketStateEvent = new TicketStateEvent();
-        newTicketStateEvent.setTicketEvent(TicketStateEventEnum.REGISTERED);
+        newTicketStateEvent.setTicketEvent(TicketState.REGISTERED);
         newTicketStateEvent.setTicket(savedTicket);
         return newTicketStateEvent;
     }
 
-    private RepairStateEvent createRepairEvent(final Repair savedRepair, final RepairStateEventEnum evt) {
-        if (evt == null) throw new IllegalArgumentException("Invalid RepairStateEventEnum");
+    private RepairStateEvent createRepairEvent(final Repair savedRepair, final RepairState evt) {
+        if (evt == null) throw new IllegalArgumentException("Invalid RepairState");
         RepairStateEvent newRepairStateEvent = new RepairStateEvent();
-        newRepairStateEvent.setRepairEvent(RepairStateEventEnum.REGISTERED);
+        newRepairStateEvent.setRepairEvent(RepairState.REGISTERED);
         newRepairStateEvent.setRepair(savedRepair);
         return newRepairStateEvent;
     }
