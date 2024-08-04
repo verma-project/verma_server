@@ -2,21 +2,21 @@ package org.vermaproject.apps.server.utils.converters;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import org.vermaproject.apps.server.enums.RepairTypeEnum;
+import org.vermaproject.apps.server.enums.RepairType;
 
 @Converter
-public final class RepairTypeConverter implements AttributeConverter<RepairTypeEnum, String> {
+public final class RepairTypeConverter implements AttributeConverter<RepairType, String> {
     @Override
-    public String convertToDatabaseColumn(RepairTypeEnum repairTypeEnum) {
-        if (repairTypeEnum == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
+    public String convertToDatabaseColumn(RepairType repairType) {
+        if (repairType == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
 
-        return repairTypeEnum.toString();
+        return repairType.toString();
     }
 
     @Override
-    public RepairTypeEnum convertToEntityAttribute(String s) {
+    public RepairType convertToEntityAttribute(String s) {
         if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Value (String) is not populated.");
 
-        return RepairTypeEnum.valueOf(s);
+        return RepairType.valueOf(s);
     }
 }

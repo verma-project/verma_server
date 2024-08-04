@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum TicketTypeEnum {
+public enum TicketType {
     WALK_IN,
     ONLINE,
 }

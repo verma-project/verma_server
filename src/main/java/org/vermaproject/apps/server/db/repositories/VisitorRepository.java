@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import org.vermaproject.apps.server.db.entities.Visitor;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Repository
 public interface VisitorRepository extends JpaRepository<Visitor, UUID> {
-    Optional<Visitor> findByEmailAddr(String emailAddr);
+    Set<Visitor> findByEmailAddr(String emailAddr);
 }

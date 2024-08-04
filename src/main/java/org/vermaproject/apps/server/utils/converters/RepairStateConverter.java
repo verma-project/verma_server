@@ -2,22 +2,22 @@ package org.vermaproject.apps.server.utils.converters;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import org.vermaproject.apps.server.enums.RepairStateEventEnum;
+import org.vermaproject.apps.server.enums.RepairState;
 
 @Converter
-public final class RepairStateEventConverter implements AttributeConverter<RepairStateEventEnum, String> {
+public final class RepairStateConverter implements AttributeConverter<RepairState, String> {
 
     @Override
-    public String convertToDatabaseColumn(RepairStateEventEnum repairEvent) {
+    public String convertToDatabaseColumn(RepairState repairEvent) {
         if (repairEvent == null) throw new IllegalArgumentException("DB error. Enum variant is not populated.");
 
         return repairEvent.toString();
     }
 
     @Override
-    public RepairStateEventEnum convertToEntityAttribute(String s) {
+    public RepairState convertToEntityAttribute(String s) {
         if (s == null || s.isEmpty()) throw new IllegalArgumentException("DB error. Value (String) is not populated.");
 
-        return RepairStateEventEnum.valueOf(s);
+        return RepairState.valueOf(s);
     }
 }

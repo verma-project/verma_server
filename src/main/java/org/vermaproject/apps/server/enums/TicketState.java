@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum TicketStateEventEnum {
+public enum TicketState {
     REGISTERED,
     SCANNED,
     NO_SHOW,

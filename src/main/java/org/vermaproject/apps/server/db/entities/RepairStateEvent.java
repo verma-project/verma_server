@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.RepairStateEventEnum;
-import org.vermaproject.apps.server.utils.converters.RepairStateEventConverter;
+import org.vermaproject.apps.server.enums.RepairState;
+import org.vermaproject.apps.server.utils.converters.RepairStateConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -32,9 +32,9 @@ public final class RepairStateEvent extends BaseEntity implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Repair repair;
 
-    @Convert(converter = RepairStateEventConverter.class)
+    @Convert(converter = RepairStateConverter.class)
     @Column(nullable = false)
-    private RepairStateEventEnum repairEvent;
+    private RepairState repairEvent;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

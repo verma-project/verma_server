@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.TicketStateEventEnum;
-import org.vermaproject.apps.server.utils.converters.TicketStateEventConverter;
+import org.vermaproject.apps.server.enums.TicketState;
+import org.vermaproject.apps.server.utils.converters.TicketStateConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -28,8 +28,8 @@ public final class TicketStateEvent extends BaseEntity implements Serializable {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @Convert(converter = TicketStateEventConverter.class)
-    private TicketStateEventEnum ticketEvent;
+    @Convert(converter = TicketStateConverter.class)
+    private TicketState ticketEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)

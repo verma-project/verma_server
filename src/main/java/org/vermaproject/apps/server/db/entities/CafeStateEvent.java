@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.CafeStateEventEnum;
-import org.vermaproject.apps.server.utils.converters.CafeStateEventConverter;
+import org.vermaproject.apps.server.enums.CafeState;
+import org.vermaproject.apps.server.utils.converters.CafeStateConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -29,8 +29,8 @@ public final class CafeStateEvent extends BaseEntity implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    @Convert(converter = CafeStateEventConverter.class)
-    private CafeStateEventEnum cafeEvent;
+    @Convert(converter = CafeStateConverter.class)
+    private CafeState cafeEvent;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)

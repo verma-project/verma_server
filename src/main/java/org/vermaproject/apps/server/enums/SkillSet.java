@@ -1,14 +1,17 @@
 package org.vermaproject.apps.server.enums;
 
-public enum RepairTypeEnum {
+public enum SkillSet {
     COMPUTER,
-    SMALL_ELECTRICAL,
-    CLOTHES,
-    FURNITURE,
+    ELECTRICAL_ELECTRONICS,
     MECHANICAL,
     GARDEN_TOOL,
     TOY,
     BICYCLE,
     JEWELLERY,
     OTHER,
+    MUSICAL,
+    TEXTILES,
+    GARDEN,
+    ALL_TRADES,
+    WOOD_WORK,
 }

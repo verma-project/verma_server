@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum SkillsEnum {
+public enum RepairType {
     COMPUTER,
     SMALL_ELECTRICAL,
     CLOTHES,
@@ -11,8 +11,4 @@ public enum SkillsEnum {
     BICYCLE,
     JEWELLERY,
     OTHER,
-    MUSICAL,
-    TEXTILES,
-    GARDEN,
-    ALL_TRADES,
 }

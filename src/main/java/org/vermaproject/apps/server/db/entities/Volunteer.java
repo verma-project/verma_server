@@ -10,8 +10,8 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.SkillsEnum;
-import org.vermaproject.apps.server.enums.VolunteerTypeEnum;
+import org.vermaproject.apps.server.enums.SkillSet;
+import org.vermaproject.apps.server.enums.VolunteerType;
 import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
 
 import java.io.Serializable;
@@ -46,7 +46,7 @@ public final class Volunteer extends BaseEntity implements Serializable {
     @Convert(converter = StringTrimConverter.class)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @NotEmpty
     @Email
     @Convert(converter = StringTrimConverter.class)
@@ -56,14 +56,14 @@ public final class Volunteer extends BaseEntity implements Serializable {
     private String shortCode;
     @Column(nullable = false)
     private boolean active;
-    @ElementCollection(targetClass = SkillsEnum.class)
+    @ElementCollection(targetClass = SkillSet.class)
     @JoinTable(name = "Volunteer_Skills", joinColumns = @JoinColumn(name = "volunteer_id"))
     @Enumerated(EnumType.STRING)
-    private List<SkillsEnum> skills;
-    @ElementCollection(targetClass = VolunteerTypeEnum.class)
+    private List<SkillSet> skills;
+    @ElementCollection(targetClass = VolunteerType.class)
     @JoinTable(name = "Volunteer_Type", joinColumns = @JoinColumn(name = "volunteer_id"))
     @Enumerated(EnumType.STRING)
-    private List<VolunteerTypeEnum> volunteerType;
+    private List<VolunteerType> volunteerType;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Repair> repairs;

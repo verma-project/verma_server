@@ -6,10 +6,10 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.PatTestResultEnum;
-import org.vermaproject.apps.server.enums.PatTestStateEventEnum;
-import org.vermaproject.apps.server.utils.converters.PatTestStateEventConverter;
-import org.vermaproject.apps.server.utils.converters.PatTestResultEnumConverter;
+import org.vermaproject.apps.server.enums.PatTestResult;
+import org.vermaproject.apps.server.enums.PatTestState;
+import org.vermaproject.apps.server.utils.converters.PatTestStateConverter;
+import org.vermaproject.apps.server.utils.converters.PatTestResultConverter;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -35,14 +35,14 @@ public final class PatTestStateEvent extends BaseEntity implements Serializable 
     @OnDelete(action = OnDeleteAction.CASCADE)
     private PatTest patTest;
 
-    @Convert(converter = PatTestStateEventConverter.class)
+    @Convert(converter = PatTestStateConverter.class)
     @Column(nullable = false)
-    private PatTestStateEventEnum patTestStateEvent;
+    private PatTestState patTestStateEvent;
 
     @Column(nullable = false)
     @NotEmpty
-    @Convert(converter = PatTestResultEnumConverter.class)
-    private PatTestResultEnum patTestResult;
+    @Convert(converter = PatTestResultConverter.class)
+    private PatTestResult patTestResult;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.RepairTypeEnum;
+import org.vermaproject.apps.server.enums.RepairType;
 import org.vermaproject.apps.server.utils.converters.RepairTypeConverter;
 import org.vermaproject.apps.server.utils.converters.StringListConverter;
 import org.vermaproject.apps.server.utils.converters.StringTrimConverter;
@@ -51,7 +51,7 @@ public final class Repair extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     @Convert(converter = RepairTypeConverter.class)
-    private RepairTypeEnum repairType;
+    private RepairType repairType;
 
     @Column(nullable = false)
     @NotEmpty
@@ -71,6 +71,6 @@ public final class Repair extends BaseEntity implements Serializable {
     private Ticket ticket;
 
     private boolean isCustomRepairType() {
-        return repairType.equals(RepairTypeEnum.OTHER) && (repairTypeCustom != null && !repairTypeCustom.isEmpty());
+        return repairType.equals(RepairType.OTHER) && (repairTypeCustom != null && !repairTypeCustom.isEmpty());
     }
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.vermaproject.apps.server.enums.TicketTypeEnum;
+import org.vermaproject.apps.server.enums.TicketType;
 import org.vermaproject.apps.server.utils.converters.TicketTypeConverter;
 
 import java.io.Serializable;
@@ -31,7 +31,7 @@ public final class Ticket extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     @Convert(converter = TicketTypeConverter.class)
-    private TicketTypeEnum ticketType;
+    private TicketType ticketType;
 
     @ManyToOne(fetch = FetchType.LAZY,
         cascade = CascadeType.ALL

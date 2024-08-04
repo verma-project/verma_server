@@ -39,7 +39,7 @@ public final class Visitor extends BaseEntity implements Serializable {
     @Convert(converter = StringTrimConverter.class)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @NotEmpty
     @Email
     @Convert(converter = StringTrimConverter.class)

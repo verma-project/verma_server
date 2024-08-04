@@ -1,6 +1,6 @@
 package org.vermaproject.apps.server.enums;
 
-public enum PatTestResultEnum {
+public enum PatTestResult {
     PASS,
     FAIL,
     INCONCLUSIVE,
