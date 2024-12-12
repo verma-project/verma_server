@@ -174,7 +174,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf</artifactId>
-            <version>9.11.1</version>
+            <version>9.11.2</version>
         </dependency>
     </dependencies>
 
