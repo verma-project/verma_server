@@ -22,7 +22,8 @@ on:
 jobs:
   deploy-prod:
     name: Production deployer to Fly.io
-    if: ${{ startsWith(github.ref, 'refs/tags/') && inputs.is_pr == false && inputs.is_push == true }}
+    # if: ${{ startsWith(github.ref, 'refs/tags/') && inputs.is_pr == false && inputs.is_push == true }}
+    if: false
     runs-on: ubuntu-latest
     env:
         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -36,7 +37,8 @@ jobs:
 
   deploy-staging:
     name: Staging deployer to Fly.io
-    if: ${{ inputs.is_pr == false && inputs.is_push == true && inputs.is_push_to_main == true }}
+    # if: ${{ inputs.is_pr == false && inputs.is_push == true && inputs.is_push_to_main == true }}
+    if: false
     runs-on: ubuntu-latest
     env:
         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
