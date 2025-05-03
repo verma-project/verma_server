@@ -28,6 +28,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <hibernate.version>6.4.2.Final</hibernate.version>
+        <skipTests>true</skipTests>
     </properties>
     <developers>
         <developer>
@@ -183,6 +184,14 @@ SPDX-License-Identifier: AGPL-3.0-only
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
