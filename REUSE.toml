@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2023-2025 Dom Rodriguez (shymega) <shymega@shymega.org.uk>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+version = 1
+SPDX-PackageName = "verma_server"
+SPDX-PackageSupplier = "Dom Rodriguez (shymega) <shymega@shymega.org.uk>"
+
+[[annotations]]
+path = "src/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023-2025 Dom Rodriguez (shymega) <shymega@shymega.org.uk>"
+SPDX-License-Identifier = "AGPL-3.0-only"
