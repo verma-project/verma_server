@@ -30,20 +30,20 @@ public class ApplicationConfiguration {
         // TODO: Document the following code snippet.
         // First try `DATABASE_URL` and then `SPRING_DATASOURCE_URL.
         if (DATABASE_URL != null) {
-            log.info("Using `$DATABASE_URL` for DB connection: {}", DATABASE_URL);
+            log.debug("Using `$DATABASE_URL` for DB connection: {}", DATABASE_URL);
             return builder.url(getSpringDataSourceURL(DATABASE_URL)).build();
             // Now try `SPRING_DATASOURCE_URL`.
         } else if (SPRING_DATASOURCE_URL != null) {
-            log.info("Using `$SPRING_DATASOURCE_URL` for DB connection: {}", SPRING_DATASOURCE_URL);
+            log.debug("Using `$SPRING_DATASOURCE_URL` for DB connection: {}", SPRING_DATASOURCE_URL);
             return builder.url(SPRING_DATASOURCE_URL).build();
             // Finally, fallback to H2 in-mem DB.
         } else {
-            log.info("Using default H2 in-mem DB connection: {}", DEFAULT_DB_URL);
+            log.warn("Using default H2 in-mem DB connection: {}", DEFAULT_DB_URL);
             return builder.url(DEFAULT_DB_URL).build();
         }
     }
 
-    private final String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
+    private String getSpringDataSourceURL(final String databaseURL) throws URISyntaxException {
         final URI uri = new URI(databaseURL);
         String username = "";
         String password = "";
