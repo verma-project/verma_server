@@ -49,6 +49,16 @@ public class VisitorService {
             .toList();
     }
 
+    /* Get all visitors, excluding banned */
+    public Collection<Visitor> getVisitorsBySurname(final String surname) {
+        return repository.findAll()
+            .stream()
+            .filter(Objects::nonNull)
+            .filter(Visitor::isNotBanned)
+            .filter(v -> Objects.equals(v.getLastName(), surname))
+            .toList();
+    }
+
     public void ban(final UUID id) {
         modifyBanned(id, true);
     }
