@@ -13,8 +13,9 @@ dockerTools.buildLayeredImage {
     entrypoint = writeShellScript "entrypoint" ''
       echo Hello.
     '';
-  in [entrypoint];
+  in
+    lib.singleton entrypoint;
   contents = [verma_server];
   name = "ghcr.io/verma-project/verma_server";
-  tag = "latest-nix";
+  tag = "latest";
 }
