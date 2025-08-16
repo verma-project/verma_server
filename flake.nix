@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     mvn2nix.url = "github:fzakaria/mvn2nix";
     systems.url = "github:nix-systems/default";
     devenv = {
