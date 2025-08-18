@@ -65,7 +65,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
-            <version>6.2.9</version>
+            <version>6.2.10</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -175,7 +175,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf</artifactId>
-            <version>9.13.1</version>
+            <version>9.13.2</version>
         </dependency>
     </dependencies>
 
