@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "cafes")
-@Entity(name = "Cafe")
+@Table(name = "cafe_sessions")
+@Entity(name = "CafeSession")
 @ToString
 @Builder
 @Data
