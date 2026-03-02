@@ -4,10 +4,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
-    mvn2nix = {
-        url = "github:fzakaria/mvn2nix";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +17,6 @@
         import nixpkgs {
           inherit system;
           overlays = with inputs; [
-            mvn2nix.overlay
             (final: _: rec {
               verma_server = final.callPackage ./nix/package.nix {inherit self;};
             })

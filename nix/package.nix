@@ -3,42 +3,26 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 {
   lib,
-  stdenv,
-  buildMavenRepositoryFromLockFile,
   makeWrapper,
   maven,
-  jdk21_headless,
+  jre,
   self,
-}: let
-  mavenRepository = buildMavenRepositoryFromLockFile {file = "${self}/nix/mvn2nix-lock.json";};
-in
-  stdenv.mkDerivation rec {
+}: maven.buildMavenPackage rec {
     pname = "verma-server";
     version = "0.1.0";
-    name = "${pname}-${version}";
     src = self;
 
-    nativeBuildInputs = [jdk21_headless maven makeWrapper];
-    buildPhase = ''
-      echo "Building with maven repository ${mavenRepository}"
-      mvn package --offline -Dmaven.repo.local=${mavenRepository}
-    '';
+    mvnHash = "sha256-Vt9cWORwa4hxvwTuXw47+i/C4LKHx+C14W9Azkg9Alw=";
+
+    nativeBuildInputs = [makeWrapper];
 
     installPhase = ''
       # create the bin directory
-      mkdir -p $out/bin
+      mkdir -p $out/bin $out/share/${pname}
 
-      # create a symbolic link for the lib directory
-      ln -s ${mavenRepository} $out/lib
+      install -Dm644 target/${pname}-${version}.war $out/share/${pname}
 
-      # copy out the WAR
-      # Maven already setup the classpath to use m2 repository layout
-      # with the prefix of lib/
-      cp target/${name}.war $out/
-
-      # create a wrapper that will automatically set the classpath
-      # this should be the paths from the dependency derivation
-      makeWrapper ${jdk21_headless}/bin/java $out/bin/${pname} \
-            --add-flags "-jar $out/${name}.war"
+      makeWrapper ${jre}/bin/java $out/bin/${pname} \
+        --add-flags "-jar $out/share/verma-server/${pname}.war"
     '';
-  }
+}

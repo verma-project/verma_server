@@ -4,7 +4,6 @@
 {pkgs, ...}: {
   packages = with pkgs; [
     git
-    mvn2nix
   ];
 
   languages = {
