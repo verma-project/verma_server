@@ -9,7 +9,7 @@
   languages = {
     java = {
       enable = true;
-      jdk.package = pkgs.jdk21;
+      jdk.package = pkgs.jdk25;
       maven = {
         enable = true;
         package = pkgs.maven;
