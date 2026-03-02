@@ -2,7 +2,10 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 {pkgs, ...}: {
-  packages = [pkgs.git];
+  packages = with pkgs; [
+    git
+    mvn2nix
+  ];
 
   languages = {
     java = {
