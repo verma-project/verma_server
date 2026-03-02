@@ -7,7 +7,7 @@
   languages = {
     java = {
       enable = true;
-      jdk.package = pkgs.jdk17;
+      jdk.package = pkgs.jdk21;
       maven = {
         enable = true;
         package = pkgs.maven;
@@ -28,7 +28,7 @@
   difftastic.enable = true;
   dotenv.enable = true;
 
-  pre-commit.hooks = {
+  git-hooks.hooks = {
     actionlint.enable = true;
     commitizen.enable = true;
     markdownlint.enable = true;
