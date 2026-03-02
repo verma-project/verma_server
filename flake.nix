@@ -4,7 +4,10 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
-    mvn2nix.url = "github:fzakaria/mvn2nix";
+    mvn2nix = {
+        url = "github:fzakaria/mvn2nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
