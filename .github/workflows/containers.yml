@@ -6,6 +6,9 @@ name: "Container Image builder workflow"
 
 on:
   workflow_call:
+  push:
+    tags:
+      - v*
 
 jobs:
   build-container-image:
@@ -14,22 +17,16 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
-        with:
-          submodules: 'recursive'
 
-      - name: Build images
-        id: build
-        uses: redhat-actions/buildah-build@v2.13
-        with:
-          image: ${{ github.repository }}
-          tags: ${{ github.ref_name }}
-          containerfiles: Dockerfile
+      - name: Build image with Nix
+        run: |
+            podman load -i $(nix build --print-out-paths .#oci)
 
-      - name: Push container to GHCR.io
+      - name: Push container to GHCR
         uses: redhat-actions/push-to-registry@v2.8
         with:
-          image: ${{ steps.build.outputs.image }}
-          tags: ${{ steps.build.outputs.tags }}
+          image: ghcr.io/verma-project/verma_server
+          tags: latest
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
