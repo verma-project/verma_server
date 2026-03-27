@@ -18,11 +18,9 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
-
+      - uses: cachix/install-nix-action@v31
       - name: Build image with Nix
-        run: |
-            podman load -i $(nix build --print-out-paths .#oci)
-
+        run: podman load -i $(nix build --print-out-paths .#oci)
       - name: Push container to GHCR
         uses: redhat-actions/push-to-registry@v2.8
         with:
