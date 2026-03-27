@@ -6,6 +6,7 @@ name: "Container Image builder workflow"
 
 on:
   workflow_call:
+  workflow_dispatch:
   push:
     tags:
       - v*
