@@ -52,10 +52,11 @@
       devenv-up = self.devShells.${pkgs.stdenv.hostPlatform.system}.default.config.procfileScript;
     });
 
-    devShells.default = forEachSystem (pkgs:
-      devenv.lib.mkShell {
+    devShells = forEachSystem (pkgs: {
+      default = devenv.lib.mkShell {
         inherit inputs pkgs;
         modules = pkgs.lib.singleton ./devenv.nix;
-      });
+      };
+    });
   };
 }
