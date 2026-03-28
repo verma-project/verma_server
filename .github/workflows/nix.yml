@@ -19,6 +19,6 @@ jobs:
       - name: Build default Nix package
         run: nix build --accept-flake-config -L
       - name: Build OCI Nix package
-        run: nix build --accept-flake-config L .#oci
+        run: nix build --accept-flake-config -L .#oci
       - name: Check Flake with Nix
         run: nix flake check --accept-flake-config --impure
