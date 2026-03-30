@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.4</version>
+        <version>4.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.vermaproject.apps.server</groupId>
@@ -162,7 +162,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf</artifactId>
-            <version>10.1.0</version>
+            <version>10.2.0</version>
         </dependency>
 
         <!-- Tomcat for WAR -->
