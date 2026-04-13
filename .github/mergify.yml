@@ -20,11 +20,6 @@ pull_request_rules:
     actions:
       review:
         type: APPROVE
-  - name: Delete head branch on merged pull requests
-    conditions:
-      - merged
-    actions:
-      delete_head_branch:
   - name: Automatic merge when reviews approve, unless 'do-not-merge' label is present
     conditions:
       - "#approved-reviews-by >= 1"
