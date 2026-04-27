@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.vermaproject.apps.server</groupId>
@@ -130,13 +130,13 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>6.1.0-M1</version>
+            <version>6.1.0-RC1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>6.1.0-M1</version>
+            <version>6.1.0-RC1</version>
             <scope>test</scope>
         </dependency>
 
