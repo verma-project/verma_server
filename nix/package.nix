@@ -7,7 +7,9 @@
   maven,
   jre,
   self,
+  stdenv,
 }:
+assert stdenv.isLinux;
 maven.buildMavenPackage rec {
   pname = "verma-server";
   version = "0.1.0";
