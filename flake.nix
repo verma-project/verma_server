@@ -28,8 +28,8 @@
         import nixpkgs {
           inherit system;
           overlays = with inputs; [
-            (final: _: rec {
-              verma_server = final.callPackage ./nix/package.nix {inherit self;};
+            (_: prev: {
+              verma_server = prev.callPackage ./nix/package.nix {inherit self;};
             })
           ];
         };
