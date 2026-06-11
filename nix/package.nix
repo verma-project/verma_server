@@ -13,7 +13,7 @@ maven.buildMavenPackage rec {
   version = "0.1.0";
   src = self;
 
-  mvnHash = import "${self}/nix/mvnHash.nix";
+  mvnHash = "sha256-+kEQRbPBeRVPOv8aSdkWZaMxEia2kHuxyzQoiwSzZp4=";
 
   nativeBuildInputs = [makeWrapper];
 
