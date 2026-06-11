@@ -10,22 +10,22 @@
   stdenv,
 }:
 assert stdenv.isLinux;
-maven.buildMavenPackage rec {
-  pname = "verma-server";
-  version = "0.1.0";
-  src = self;
+  maven.buildMavenPackage rec {
+    pname = "verma-server";
+    version = "0.1.0";
+    src = self;
 
-  mvnHash = "sha256-+kEQRbPBeRVPOv8aSdkWZaMxEia2kHuxyzQoiwSzZp4=";
+    mvnHash = "sha256-+kEQRbPBeRVPOv8aSdkWZaMxEia2kHuxyzQoiwSzZp4=";
 
-  nativeBuildInputs = [makeWrapper];
+    nativeBuildInputs = [makeWrapper];
 
-  installPhase = ''
-    # create the bin directory
-    mkdir -p $out/bin $out/share/${pname}
+    installPhase = ''
+      # create the bin directory
+      mkdir -p $out/bin $out/share/${pname}
 
-    install -Dm644 target/${pname}-${version}.war $out/share/${pname}
+      install -Dm644 target/${pname}-${version}.war $out/share/${pname}
 
-    makeWrapper ${jre}/bin/java $out/bin/${pname} \
-      --add-flags "-jar $out/share/verma-server/${pname}-${version}.war"
-  '';
-}
+      makeWrapper ${jre}/bin/java $out/bin/${pname} \
+        --add-flags "-jar $out/share/verma-server/${pname}-${version}.war"
+    '';
+  }
