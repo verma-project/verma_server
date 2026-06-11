@@ -1,7 +1,13 @@
 # SPDX-FileCopyrightText: 2023-2025 Dom Rodriguez (shymega) <shymega@shymega.org.uk>
 #
 # SPDX-License-Identifier: AGPL-3.0-only
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   packages = with pkgs; [
     git
   ];
@@ -9,7 +15,7 @@
   languages = {
     java = {
       enable = true;
-      jdk.package = pkgs.jdk25;
+      jdk.package = pkgs.jdk21;
       maven = {
         enable = true;
         package = pkgs.maven;
