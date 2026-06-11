@@ -11,11 +11,10 @@
 dockerTools.buildLayeredImage {
   config.Cmd = let
     entrypoint = writeShellScript "entrypoint" ''
-      echo Hello.
+      ${lib.getExe verma_server} $@
     '';
   in
     lib.singleton entrypoint;
-  contents = [verma_server];
   name = "ghcr.io/verma-project/verma_server";
   tag = "latest";
 }
