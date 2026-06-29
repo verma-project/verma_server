@@ -110,7 +110,7 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>9.1.0.Final</version>
+            <version>9.1.1.Final</version>
         </dependency>
 
         <!-- Rate limiting -->
@@ -130,13 +130,13 @@ SPDX-License-Identifier: AGPL-3.0-only
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>6.1.0</version>
+            <version>6.1.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>6.1.0</version>
+            <version>6.1.1</version>
             <scope>test</scope>
         </dependency>
 
