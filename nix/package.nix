@@ -15,7 +15,7 @@ assert stdenv.isLinux;
     version = "0.1.0";
     src = self;
 
-    mvnHash = "sha256-+kEQRbPBeRVPOv8aSdkWZaMxEia2kHuxyzQoiwSzZp4=";
+    mvnHash = "sha256-1wpLaNgBFCW1Kni7gYmjbd/UG6NRhlxyWgexm2bkGLg=";
 
     nativeBuildInputs = [makeWrapper];
 
