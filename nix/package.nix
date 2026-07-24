@@ -28,4 +28,10 @@ assert stdenv.isLinux;
       makeWrapper ${jre}/bin/java $out/bin/${pname} \
         --add-flags "-jar $out/share/verma-server/${pname}-${version}.war"
     '';
+
+    meta = {
+      maintainers = with lib.maintainers; [shymega];
+      mainProgram = "verma-server";
+      platforms = lib.platforms.linux;
+    };
   }
