@@ -4,35 +4,28 @@
 
 {
   lib,
-  makeWrapper,
-  maven,
-  jre,
+  pkg-config,
+  rustPlatform,
   self,
   stdenv,
 }:
 assert stdenv.isLinux;
-  maven.buildMavenPackage rec {
-    pname = "verma-server";
+  rustPlatform.buildRustPackage (finalAttrs: {
+    name = "verma_server";
     version = "0.1.0";
-    src = self;
 
-    mvnHash = "sha256-1wpLaNgBFCW1Kni7gYmjbd/UG6NRhlxyWgexm2bkGLg=";
+    src = lib.cleanSource self;
 
-    nativeBuildInputs = [makeWrapper];
+    cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
 
-    installPhase = ''
-      # create the bin directory
-      mkdir -p $out/bin $out/share/${pname}
-
-      install -Dm644 target/${pname}-${version}.war $out/share/${pname}
-
-      makeWrapper ${jre}/bin/java $out/bin/${pname} \
-        --add-flags "-jar $out/share/verma-server/${pname}-${version}.war"
-    '';
+    nativeBuildInputs = [pkg-config];
 
     meta = {
+      description = "";
+      homepage = "https://verma-project.github.io";
+      license = lib.licenses.agpl3Only;
       maintainers = with lib.maintainers; [shymega];
-      mainProgram = "verma-server";
+      mainProgram = "vermas";
       platforms = lib.platforms.linux;
     };
-  }
+  })

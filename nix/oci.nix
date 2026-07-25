@@ -3,11 +3,12 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 
 {
-  lib,
   dockerTools,
+  lib,
+  pkgs,
+  self,
   verma_server,
   writeShellScript,
-  self,
 }:
 dockerTools.buildLayeredImage {
   config.Cmd = let
@@ -17,5 +18,9 @@ dockerTools.buildLayeredImage {
   in
     lib.singleton entrypoint;
   name = "ghcr.io/verma-project/verma_server";
+  contents = with pkgs; [
+    verma_server
+    bash
+  ];
   tag = "latest";
 }
