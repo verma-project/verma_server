@@ -1,6 +1,7 @@
-# SPDX-FileCopyrightText: 2023-2025 Dom Rodriguez (shymega) <shymega@shymega.org.uk>
+# SPDX-FileCopyrightText: 2023-2026 The Verma Developer Group
 #
 # SPDX-License-Identifier: AGPL-3.0-only
+
 {
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";

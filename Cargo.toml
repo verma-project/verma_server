@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2023-2026 The Verma Developer Group
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+[package]
+name = "refactor-use-rust"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "vermas"
+
+[dependencies]
+anyhow = "1.0.104"
+thiserror = "2.0.19"

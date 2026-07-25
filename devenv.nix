@@ -1,6 +1,7 @@
-# SPDX-FileCopyrightText: 2023-2025 Dom Rodriguez (shymega) <shymega@shymega.org.uk>
+# SPDX-FileCopyrightText: 2023-2026 The Verma Developer Group
 #
 # SPDX-License-Identifier: AGPL-3.0-only
+
 {
   pkgs,
   lib,
@@ -13,14 +14,7 @@
   ];
 
   languages = {
-    java = {
-      enable = true;
-      jdk.package = pkgs.jdk21;
-      maven = {
-        enable = true;
-        package = pkgs.maven;
-      };
-    };
+    rust.enable = true;
     shell.enable = true;
     nix.enable = true;
   };
