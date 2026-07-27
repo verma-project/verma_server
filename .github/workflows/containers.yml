@@ -22,7 +22,7 @@ jobs:
       - name: Build image with Nix
         run: podman load -i $(nix build --accept-flake-config --print-out-paths .#oci)
       - name: Push container to GHCR
-        uses: redhat-actions/push-to-registry@v2.8
+        uses: redhat-actions/push-to-registry@v3
         with:
           image: ghcr.io/verma-project/verma_server
           tags: latest
